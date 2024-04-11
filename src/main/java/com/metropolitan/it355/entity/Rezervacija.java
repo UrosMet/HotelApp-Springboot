@@ -27,7 +27,7 @@ public class Rezervacija {
     @JoinColumn(name = "ID_Recepcioner", nullable = false)
     private Recepcioner idRecepcioner;
 
-    @Column(name = "DatumRezervacije")
+    @Column(name = "Datum_Rezervacije")
     private LocalDate datumRezervacije;
 
 }

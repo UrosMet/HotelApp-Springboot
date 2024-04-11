@@ -22,7 +22,7 @@ public class Recepcioner {
     @Column(name = "Prezime", length = 50)
     private String prezime;
 
-    @Column(name = "KorisnickoIme", length = 50)
+    @Column(name = "Korisnicko_Ime", length = 50)
     private String korisnickoIme;
 
     @Column(name = "Lozinka", length = 50)

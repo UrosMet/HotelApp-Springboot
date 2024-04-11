@@ -23,13 +23,13 @@ public class Gost {
     @Column(name = "Prezime", length = 50)
     private String prezime;
 
-    @Column(name = "DatumDolaska")
+    @Column(name = "Datum_Dolaska")
     private LocalDate datumDolaska;
 
-    @Column(name = "DatumOdlaska")
+    @Column(name = "Datum_Odlaska")
     private LocalDate datumOdlaska;
 
-    @Column(name = "TipGosta", length = 10)
+    @Column(name = "Tip_Gosta", length = 10)
     private String tipGosta;
 
     @OneToMany(mappedBy = "idGosta")

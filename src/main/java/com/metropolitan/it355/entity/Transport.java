@@ -20,10 +20,10 @@ public class Transport {
     @JoinColumn(name = "ID_Gosta")
     private Gost idGosta;
 
-    @Column(name = "VrstaTransporta", length = 50)
+    @Column(name = "Vrsta_Transporta", length = 50)
     private String vrstaTransporta;
 
-    @Column(name = "VremeNarucivanja")
+    @Column(name = "Vreme_Narucivanja")
     private Instant vremeNarucivanja;
 
 }

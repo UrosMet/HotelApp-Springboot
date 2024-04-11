@@ -19,7 +19,7 @@ public class Cenovnik {
     @JoinColumn(name = "ID_Sobe")
     private Soba idSobe;
 
-    @Column(name = "CenaPoNoci", precision = 10, scale = 2)
+    @Column(name = "Cena_Po_Noci", precision = 10, scale = 2)
     private BigDecimal cenaPoNoci;
 
 }

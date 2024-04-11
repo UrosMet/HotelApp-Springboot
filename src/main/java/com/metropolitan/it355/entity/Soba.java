@@ -16,10 +16,10 @@ public class Soba {
     @Column(name = "ID_Sobe", nullable = false)
     private Integer id;
 
-    @Column(name = "BrojKreveta")
+    @Column(name = "Broj_Kreveta")
     private Integer brojKreveta;
 
-    @Column(name = "TipKreveta", length = 50)
+    @Column(name = "Tip_Kreveta", length = 50)
     private String tipKreveta;
 
     @Column(name = "Klima")
