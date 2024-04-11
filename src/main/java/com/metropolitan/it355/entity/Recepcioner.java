@@ -31,4 +31,7 @@ public class Recepcioner {
     @OneToMany(mappedBy = "idRecepcioner")
     private Set<Rezervacija> listaRezervacija = new LinkedHashSet<>();
 
+    @Column(name = "Admin", nullable = false)
+    private Boolean admin = false;
+
 }
