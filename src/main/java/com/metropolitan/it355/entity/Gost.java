@@ -1,5 +1,6 @@
 package com.metropolitan.it355.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,10 +33,12 @@ public class Gost {
     @Column(name = "Tip_Gosta", length = 10)
     private String tipGosta;
 
-    @OneToMany(mappedBy = "idGosta")
+    @JsonIgnore
+    @OneToMany(mappedBy = "idGosta" , fetch = FetchType.EAGER)
     private Set<Rezervacija> listaRezervacija = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "idGosta")
+    @JsonIgnore
+    @OneToMany(mappedBy = "idGosta", fetch = FetchType.EAGER)
     private Set<Transport> listaTransporta = new LinkedHashSet<>();
 
 }

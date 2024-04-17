@@ -11,17 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/gosti")
-@AllArgsConstructor
+
 public class GostController {
     private final GostRepository gostRepository;
 
     @GetMapping
     public ResponseEntity<List<Gost>> getAllProducts() {
-        for (Gost gost : gostRepository.findAll())
-            System.out.println(gost.getIme());
-        return  ResponseEntity.ok(gostRepository.findAll());
+//        for (Gost gost : gostRepository.findAll())
+//            System.out.println(gost.getIme());
+        return ResponseEntity.ok(gostRepository.findAll());
     }
 
 

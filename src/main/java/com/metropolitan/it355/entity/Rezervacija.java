@@ -15,7 +15,7 @@ public class Rezervacija {
     @Column(name = "ID_Rezervacije", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "ID_Gosta")
     private Gost idGosta;
 
