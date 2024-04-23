@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/recepcioner")
 public class RecepcionerController {
-
     final RecepcionerService recepcionerService;
 
 }
