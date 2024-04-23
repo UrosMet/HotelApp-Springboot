@@ -1,13 +1,15 @@
 package com.metropolitan.it355.controller;
 
-import com.metropolitan.it355.repository.RecepcionerRepository;
+import com.metropolitan.it355.services.RecepcionerService;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @AllArgsConstructor
-@Controller
+@RestController
+@RequestMapping("/recepcioner")
 public class RecepcionerController {
 
-    private final RecepcionerRepository recepcionerRepository;
+    final RecepcionerService recepcionerService;
 
 }

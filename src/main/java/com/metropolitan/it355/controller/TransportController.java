@@ -1,14 +1,16 @@
 package com.metropolitan.it355.controller;
 
-import com.metropolitan.it355.repository.TransportRepository;
+import com.metropolitan.it355.services.TransportService;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @AllArgsConstructor
-@Controller
+@RestController
+@RequestMapping("/transport")
 public class TransportController {
 
-    private final TransportRepository transportRepository;
+    final TransportService transportService;
 
 
 }

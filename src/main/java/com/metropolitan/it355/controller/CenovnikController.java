@@ -1,11 +1,15 @@
 package com.metropolitan.it355.controller;
 
-import com.metropolitan.it355.repository.CenovnikRepository;
+import com.metropolitan.it355.services.CenovnikService;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @AllArgsConstructor
-@Controller
+@RestController
+@RequestMapping("/cenovnik")
 public class CenovnikController {
-    private final CenovnikRepository cenovnikRepository;
+
+    final CenovnikService cenovnikService;
+
 }
