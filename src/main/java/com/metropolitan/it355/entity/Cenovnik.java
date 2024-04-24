@@ -20,10 +20,6 @@ public class Cenovnik {
     @Column(name = "ID_Cenovnika", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_Sobe")
-    private Soba idSobe;
-
     @Column(name = "Cena_Po_Noci", precision = 10, scale = 2)
     private BigDecimal cenaPoNoci;
 

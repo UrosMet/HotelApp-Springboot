@@ -27,7 +27,6 @@ public class GostController {
 
     @PostMapping
     public ResponseEntity<Gost> save(@RequestBody Gost gost) {
-        System.out.println("AAAAAAA");
         return ResponseEntity.ok(gostService.add(gost));
     }
 

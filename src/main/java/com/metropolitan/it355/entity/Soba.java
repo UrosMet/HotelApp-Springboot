@@ -24,6 +24,10 @@ public class Soba {
     @Column(name = "Tip_Kreveta", length = 50)
     private String tipKreveta;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID_Cenovnik")
+    private Cenovnik cenovnik;
+
     @Column(name = "Klima")
     private Boolean klima;
 
