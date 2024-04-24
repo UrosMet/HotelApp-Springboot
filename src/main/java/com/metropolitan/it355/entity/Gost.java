@@ -1,20 +1,22 @@
 package com.metropolitan.it355.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "gost")
 public class Gost {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Gosta", nullable = false)
     private Integer id;
 
@@ -33,12 +35,5 @@ public class Gost {
     @Column(name = "Tip_Gosta", length = 10)
     private String tipGosta;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "idGosta" , fetch = FetchType.EAGER)
-    private Set<Rezervacija> listaRezervacija = new LinkedHashSet<>();
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "idGosta", fetch = FetchType.EAGER)
-    private Set<Transport> listaTransporta = new LinkedHashSet<>();
 
 }
