@@ -1,4 +1,4 @@
-package com.metropolitan.it355.security;
+package com.metropolitan.it355.configuration.security;
 
 import com.metropolitan.it355.services.RecepcionerService;
 import lombok.AllArgsConstructor;
@@ -13,6 +13,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -25,6 +28,15 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(
+                        cors -> cors.configurationSource(request -> {
+                            CorsConfiguration corsConfiguration = new CorsConfiguration();
+                            corsConfiguration.setAllowedOrigins(List.of("*"));
+                            corsConfiguration.setAllowedMethods(List.of("*"));
+                            corsConfiguration.setAllowedHeaders(List.of("*"));
+                            return corsConfiguration;
+                        })
+                )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/gost/**").hasRole("ADMIN")
                         .requestMatchers("/soba/**").hasRole("ADMIN")
@@ -39,6 +51,9 @@ public class WebSecurityConfig {
                 .httpBasic(httpBasic -> {})
                 .build();
     }
+
+
+
 
     @Bean
     public UserDetailsService userDetailsService() {
