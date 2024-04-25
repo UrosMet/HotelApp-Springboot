@@ -24,15 +24,19 @@ public class Rezervacija {
     @JoinColumn(name = "ID_Gosta")
     private Gost idGosta;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_Sobe")
     private Soba idSobe;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "ID_Recepcioner", nullable = false)
     private Recepcioner idRecepcioner;
 
     @Column(name = "Datum_Rezervacije")
     private LocalDate datumRezervacije;
+
+    @Column(name = "Duzina_Boravka")
+    private int duzinaBoravka;
+
 
 }

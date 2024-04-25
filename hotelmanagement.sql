@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2024 at 01:15 AM
+-- Generation Time: Apr 25, 2024 at 12:47 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -29,22 +29,21 @@ USE `hotelmanagement`;
 -- Table structure for table `cenovnik`
 --
 
-CREATE TABLE IF NOT EXISTS `cenovnik` (
-                                          `ID_Cenovnika` int(11) NOT NULL AUTO_INCREMENT,
-                                          `Cena_Po_Noci` decimal(10,2) DEFAULT NULL,
-                                          PRIMARY KEY (`ID_Cenovnika`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `cenovnik` (
+                            `ID_Cenovnika` int(11) NOT NULL,
+                            `Cena_Po_Noci` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `cenovnik`
 --
 
-INSERT INTO `cenovnik` VALUES
-                           (1, '100.00'),
-                           (2, '120.00'),
-                           (3, '150.00'),
-                           (4, '90.00'),
-                           (5, '110.00');
+INSERT INTO `cenovnik` (`ID_Cenovnika`, `Cena_Po_Noci`) VALUES
+                                                            (1, '100.00'),
+                                                            (2, '120.00'),
+                                                            (3, '150.00'),
+                                                            (4, '90.00'),
+                                                            (5, '110.00');
 
 -- --------------------------------------------------------
 
@@ -52,26 +51,25 @@ INSERT INTO `cenovnik` VALUES
 -- Table structure for table `gost`
 --
 
-CREATE TABLE IF NOT EXISTS `gost` (
-                                      `ID_Gosta` int(11) NOT NULL AUTO_INCREMENT,
-                                      `Ime` varchar(50) DEFAULT NULL,
-                                      `Prezime` varchar(50) DEFAULT NULL,
-                                      `Datum_Dolaska` date DEFAULT NULL,
-                                      `Datum_Odlaska` date DEFAULT NULL,
-                                      `Tip_Gosta` varchar(10) DEFAULT NULL,
-                                      PRIMARY KEY (`ID_Gosta`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `gost` (
+                        `ID_Gosta` int(11) NOT NULL,
+                        `Ime` varchar(50) DEFAULT NULL,
+                        `Prezime` varchar(50) DEFAULT NULL,
+                        `Datum_Dolaska` date DEFAULT NULL,
+                        `Datum_Odlaska` date DEFAULT NULL,
+                        `Tip_Gosta` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `gost`
 --
 
-INSERT INTO `gost` VALUES
-                       (1, 'Marko', 'Marković', '2024-04-15', '2024-04-20', 'Regular'),
-                       (2, 'Ana', 'Anić', '2024-04-16', '2024-04-22', 'VIP'),
-                       (3, 'Jovan', 'Jovanović', '2024-04-18', '2024-04-25', 'Regular'),
-                       (4, 'Milica', 'Milivojević', '2024-04-20', '2024-04-24', 'VIP'),
-                       (5, 'Nikola', 'Nikolić', '2024-04-22', '2024-04-26', 'Regular');
+INSERT INTO `gost` (`ID_Gosta`, `Ime`, `Prezime`, `Datum_Dolaska`, `Datum_Odlaska`, `Tip_Gosta`) VALUES
+                                                                                                     (1, 'Marko', 'Marković', '2024-04-15', '2024-04-20', 'Regular'),
+                                                                                                     (2, 'Ana', 'Anić', '2024-04-16', '2024-04-22', 'VIP'),
+                                                                                                     (3, 'Jovan', 'Jovanović', '2024-04-18', '2024-04-25', 'Regular'),
+                                                                                                     (4, 'Milica', 'Milivojević', '2024-04-20', '2024-04-24', 'VIP'),
+                                                                                                     (5, 'Nikola', 'Nikolić', '2024-04-22', '2024-04-26', 'Regular');
 
 -- --------------------------------------------------------
 
@@ -79,26 +77,26 @@ INSERT INTO `gost` VALUES
 -- Table structure for table `recepcioner`
 --
 
-CREATE TABLE IF NOT EXISTS `recepcioner` (
-                                             `ID_Recepcionera` int(11) NOT NULL AUTO_INCREMENT,
-                                             `Ime` varchar(50) DEFAULT NULL,
-                                             `Prezime` varchar(50) DEFAULT NULL,
-                                             `Korisnicko_Ime` varchar(50) DEFAULT NULL,
-                                             `Lozinka` varchar(50) DEFAULT NULL,
-                                             `Role` varchar(10) NOT NULL DEFAULT 'User',
-                                             PRIMARY KEY (`ID_Recepcionera`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `recepcioner` (
+                               `ID_Recepcionera` int(11) NOT NULL,
+                               `Ime` varchar(50) DEFAULT NULL,
+                               `Prezime` varchar(50) DEFAULT NULL,
+                               `Korisnicko_Ime` varchar(50) DEFAULT NULL,
+                               `Lozinka` varchar(50) DEFAULT NULL,
+                               `Role` varchar(10) NOT NULL DEFAULT 'USER'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `recepcioner`
 --
 
-INSERT INTO `recepcioner` VALUES
-                              (1, 'Stefan', 'Stefanović', 'stefan123', '123456', 'ADMIN'),
-                              (2, 'Jelena', 'Jelenić', 'jelena456', 'pass123', 'USER'),
-                              (3, 'Marko', 'Marković', 'marko789', 'pwd456', 'USER'),
-                              (4, 'Ana', 'Anić', 'anaanica', 'secret', 'USER'),
-                              (5, 'Nikola', 'Nikolić', 'nikolanik', 'secure', 'USER');
+INSERT INTO `recepcioner` (`ID_Recepcionera`, `Ime`, `Prezime`, `Korisnicko_Ime`, `Lozinka`, `Role`) VALUES
+                                                                                                         (1, 'Stefan', 'Stefanović', 'stefan123', '123456', 'ADMIN'),
+                                                                                                         (2, 'Jelena', 'Jelenić', 'jelena456', 'pass123', 'USER'),
+                                                                                                         (3, 'Marko', 'Marković', 'marko789', 'pwd456', 'USER'),
+                                                                                                         (4, 'Ana', 'Anić', 'anaanica', 'secret', 'USER'),
+                                                                                                         (5, 'Nikola', 'Nikolić', 'nikolanik', 'secure', 'USER'),
+                                                                                                         (6, 'Uros', 'Mirkovic', 'uros', '123', 'ADMIN');
 
 -- --------------------------------------------------------
 
@@ -106,28 +104,25 @@ INSERT INTO `recepcioner` VALUES
 -- Table structure for table `rezervacija`
 --
 
-CREATE TABLE IF NOT EXISTS `rezervacija` (
-                                             `ID_Rezervacije` int(11) NOT NULL AUTO_INCREMENT,
-                                             `ID_Gosta` int(11) DEFAULT NULL,
-                                             `ID_Sobe` int(11) DEFAULT NULL,
-                                             `ID_Recepcioner` int(11) NOT NULL,
-                                             `Datum_Rezervacije` date DEFAULT NULL,
-                                             PRIMARY KEY (`ID_Rezervacije`),
-                                             KEY `rezervacija_ibfk_4` (`ID_Gosta`),
-                                             KEY `rezervacija_ibfk_1` (`ID_Sobe`),
-                                             KEY `rezervacija_ibfk_2` (`ID_Recepcioner`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `rezervacija` (
+                               `ID_Rezervacije` int(11) NOT NULL,
+                               `ID_Gosta` int(11) DEFAULT NULL,
+                               `ID_Sobe` int(11) DEFAULT NULL,
+                               `ID_Recepcioner` int(11) NOT NULL,
+                               `Datum_Rezervacije` date DEFAULT NULL,
+                               `Duzina_Boravka` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `rezervacija`
 --
 
-INSERT INTO `rezervacija` VALUES
-                              (1, 1, 2, 2, '2024-04-12'),
-                              (2, 2, 3, 1, '2024-04-13'),
-                              (3, 3, 4, 3, '2024-04-14'),
-                              (4, 4, 1, 4, '2024-04-15'),
-                              (5, 5, 5, 5, '2024-04-16');
+INSERT INTO `rezervacija` (`ID_Rezervacije`, `ID_Gosta`, `ID_Sobe`, `ID_Recepcioner`, `Datum_Rezervacije`, `Duzina_Boravka`) VALUES
+                                                                                                                                 (1, 1, 2, 2, '2024-04-12', 3),
+                                                                                                                                 (2, 2, 3, 1, '2024-04-13', 3),
+                                                                                                                                 (3, 3, 4, 3, '2024-04-14', 2),
+                                                                                                                                 (4, 4, 1, 4, '2024-04-15', 5),
+                                                                                                                                 (5, 5, 5, 5, '2024-04-16', 2);
 
 -- --------------------------------------------------------
 
@@ -135,26 +130,24 @@ INSERT INTO `rezervacija` VALUES
 -- Table structure for table `soba`
 --
 
-CREATE TABLE IF NOT EXISTS `soba` (
-                                      `ID_Sobe` int(11) NOT NULL AUTO_INCREMENT,
-                                      `Broj_Kreveta` int(11) DEFAULT NULL,
-                                      `Tip_Kreveta` varchar(50) DEFAULT NULL,
-                                      `Klima` tinyint(1) DEFAULT NULL,
-                                      `ID_Cenovnik` int(11) NOT NULL,
-                                      PRIMARY KEY (`ID_Sobe`),
-                                      KEY `fk_soba_cenovnik` (`ID_Cenovnik`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `soba` (
+                        `ID_Sobe` int(11) NOT NULL,
+                        `Broj_Kreveta` int(11) DEFAULT NULL,
+                        `Tip_Kreveta` varchar(50) DEFAULT NULL,
+                        `Klima` tinyint(1) DEFAULT NULL,
+                        `ID_Cenovnik` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `soba`
 --
 
-INSERT INTO `soba` VALUES
-                       (1, 1, 'Single', 1, 1),
-                       (2, 2, 'Double', 0, 2),
-                       (3, 2, 'Double', 1, 3),
-                       (4, 3, 'Triple', 1, 4),
-                       (5, 1, 'Single', 0, 5);
+INSERT INTO `soba` (`ID_Sobe`, `Broj_Kreveta`, `Tip_Kreveta`, `Klima`, `ID_Cenovnik`) VALUES
+                                                                                          (1, 1, 'Single', 1, 1),
+                                                                                          (2, 2, 'Double', 0, 2),
+                                                                                          (3, 2, 'Double', 1, 3),
+                                                                                          (4, 3, 'Triple', 1, 4),
+                                                                                          (5, 1, 'Single', 0, 5);
 
 -- --------------------------------------------------------
 
@@ -162,25 +155,108 @@ INSERT INTO `soba` VALUES
 -- Table structure for table `transport`
 --
 
-CREATE TABLE IF NOT EXISTS `transport` (
-                                           `ID_Transporta` int(11) NOT NULL,
-                                           `ID_Gosta` int(11) DEFAULT NULL,
-                                           `Vrsta_Transporta` varchar(50) DEFAULT NULL,
-                                           `Vreme_Narucivanja` datetime DEFAULT NULL,
-                                           PRIMARY KEY (`ID_Transporta`),
-                                           KEY `fk1` (`ID_Gosta`)
+CREATE TABLE `transport` (
+                             `ID_Transporta` int(11) NOT NULL,
+                             `ID_Gosta` int(11) DEFAULT NULL,
+                             `Vrsta_Transporta` varchar(50) DEFAULT NULL,
+                             `Vreme_Narucivanja` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `transport`
 --
 
-INSERT INTO `transport` VALUES
-                            (1, 1, 'Taxi', '2024-04-15 10:00:00'),
-                            (2, 2, 'Shuttle', '2024-04-16 11:30:00'),
-                            (3, 3, 'Limuzina', '2024-04-17 09:15:00'),
-                            (4, 4, 'Rent-a-car', '2024-04-18 08:45:00'),
-                            (5, 5, 'Taxi', '2024-04-19 07:30:00');
+INSERT INTO `transport` (`ID_Transporta`, `ID_Gosta`, `Vrsta_Transporta`, `Vreme_Narucivanja`) VALUES
+                                                                                                   (1, 1, 'Taxi', '2024-04-15 10:00:00'),
+                                                                                                   (2, 2, 'Shuttle', '2024-04-16 11:30:00'),
+                                                                                                   (3, 3, 'Limuzina', '2024-04-17 09:15:00'),
+                                                                                                   (4, 4, 'Rent-a-car', '2024-04-18 08:45:00'),
+                                                                                                   (5, 5, 'Taxi', '2024-04-19 07:30:00');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `cenovnik`
+--
+ALTER TABLE `cenovnik`
+    ADD PRIMARY KEY (`ID_Cenovnika`);
+
+--
+-- Indexes for table `gost`
+--
+ALTER TABLE `gost`
+    ADD PRIMARY KEY (`ID_Gosta`);
+
+--
+-- Indexes for table `recepcioner`
+--
+ALTER TABLE `recepcioner`
+    ADD PRIMARY KEY (`ID_Recepcionera`);
+
+--
+-- Indexes for table `rezervacija`
+--
+ALTER TABLE `rezervacija`
+    ADD PRIMARY KEY (`ID_Rezervacije`),
+    ADD KEY `rezervacija_ibfk_4` (`ID_Gosta`),
+    ADD KEY `rezervacija_ibfk_1` (`ID_Sobe`),
+    ADD KEY `rezervacija_ibfk_2` (`ID_Recepcioner`);
+
+--
+-- Indexes for table `soba`
+--
+ALTER TABLE `soba`
+    ADD PRIMARY KEY (`ID_Sobe`),
+    ADD KEY `fk_soba_cenovnik` (`ID_Cenovnik`);
+
+--
+-- Indexes for table `transport`
+--
+ALTER TABLE `transport`
+    ADD PRIMARY KEY (`ID_Transporta`),
+    ADD KEY `fk1` (`ID_Gosta`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `cenovnik`
+--
+ALTER TABLE `cenovnik`
+    MODIFY `ID_Cenovnika` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `gost`
+--
+ALTER TABLE `gost`
+    MODIFY `ID_Gosta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `recepcioner`
+--
+ALTER TABLE `recepcioner`
+    MODIFY `ID_Recepcionera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `rezervacija`
+--
+ALTER TABLE `rezervacija`
+    MODIFY `ID_Rezervacije` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `soba`
+--
+ALTER TABLE `soba`
+    MODIFY `ID_Sobe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `transport`
+--
+ALTER TABLE `transport`
+    MODIFY `ID_Transporta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
