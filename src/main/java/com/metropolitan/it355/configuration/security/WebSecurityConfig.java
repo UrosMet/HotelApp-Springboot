@@ -47,17 +47,40 @@ public class WebSecurityConfig {
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests( authConfig -> {
-                    authConfig.requestMatchers(HttpMethod.POST, "/auth/login").permitAll();
-                    authConfig.requestMatchers(HttpMethod.POST, "/auth/register").permitAll();
-                    authConfig.requestMatchers("/gost/**").hasAuthority("READ_ONLY");
-                    authConfig.requestMatchers("/rezervacija/**").hasAuthority("READ_ONLY");
-                    authConfig.requestMatchers("/transport/**").hasAuthority("READ_ONLY");
-                    authConfig.requestMatchers(HttpMethod.GET , "/soba/**").hasAuthority("READ_ONLY");
-                    authConfig.requestMatchers(HttpMethod.GET , "/cenovnik/**").hasAuthority("READ_ONLY");
-                    authConfig.requestMatchers(HttpMethod.POST , "/auth/logout").hasAuthority("READ_ONLY");
-                    authConfig.requestMatchers("/error").permitAll();
-                    authConfig.requestMatchers("/gost/**", "/soba/**", "/cenovnik/**", "/recepcioner/**", "/rezervacija/**", "/transport/**", "/admin/**","/sobaslike/**", "/actuator/**","/auth/logout").hasAuthority("FULL_ACCESS");
-                    authConfig.anyRequest().denyAll();
+                    authConfig
+                            .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                            .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                            .requestMatchers("/error").permitAll()
+                            //Soba
+                            .requestMatchers(HttpMethod.POST , "/soba/**").hasAuthority("FULL_ACCESS")
+                            .requestMatchers(HttpMethod.PUT , "/soba/**").hasAuthority("FULL_ACCESS")
+                            .requestMatchers(HttpMethod.DELETE , "/soba/**").hasAuthority("FULL_ACCESS")
+                            .requestMatchers(HttpMethod.GET , "/soba/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                            //Gost
+                            .requestMatchers("/gost/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                            //Rezervacija
+                            .requestMatchers(HttpMethod.GET , "/rezervacija/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                            .requestMatchers(HttpMethod.POST , "/rezervacija/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                            .requestMatchers(HttpMethod.PUT , "/rezervacija/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                            .requestMatchers(HttpMethod.DELETE , "/rezervacija/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                            //Transport
+                            .requestMatchers(HttpMethod.GET , "/transport/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                            .requestMatchers(HttpMethod.POST , "/transport/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                            .requestMatchers(HttpMethod.PUT , "/transport/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                            .requestMatchers(HttpMethod.DELETE , "/transport/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                            //Cenovnik
+                            .requestMatchers(HttpMethod.GET , "/cenovnik/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                            .requestMatchers(HttpMethod.POST , "/cenovnik/**").hasAuthority("FULL_ACCESS")
+                            .requestMatchers(HttpMethod.PUT , "/cenovnik/**").hasAuthority("FULL_ACCESS")
+                            .requestMatchers(HttpMethod.DELETE , "/cenovnik/**").hasAuthority("FULL_ACCESS")
+                            //Logout
+                            .requestMatchers(HttpMethod.POST , "/auth/logout").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                            //Admin
+                            .requestMatchers("/recepcioner/**").hasAuthority("FULL_ACCESS")
+                            .requestMatchers("/admin/**").hasAuthority("FULL_ACCESS")
+                            .requestMatchers("/sobaslike/**").hasAuthority("FULL_ACCESS")
+                            .requestMatchers("/actuator/**").hasAuthority("FULL_ACCESS")
+                            .anyRequest().denyAll();
                 });
 
         return http.build();
