@@ -36,7 +36,7 @@ public class WebSecurityConfig {
                 .cors(
                         cors -> cors.configurationSource(request -> {
                             CorsConfiguration corsConfiguration = new CorsConfiguration();
-                            corsConfiguration.setAllowedOrigins(List.of("*"));
+                            corsConfiguration.setAllowedOrigins(List.of("http://localhost:4200"));
                             corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
                             corsConfiguration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
                             corsConfiguration.setAllowCredentials(true);
@@ -73,12 +73,20 @@ public class WebSecurityConfig {
                             .requestMatchers(HttpMethod.POST , "/cenovnik/**").hasAuthority("FULL_ACCESS")
                             .requestMatchers(HttpMethod.PUT , "/cenovnik/**").hasAuthority("FULL_ACCESS")
                             .requestMatchers(HttpMethod.DELETE , "/cenovnik/**").hasAuthority("FULL_ACCESS")
+                            //SobaSlike
+                            .requestMatchers(HttpMethod.GET , "/sobaslike/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                            .requestMatchers(HttpMethod.POST , "/sobaslike/**").hasAuthority("FULL_ACCESS")
+                            .requestMatchers(HttpMethod.PUT , "/sobaslike/**").hasAuthority("FULL_ACCESS")
+                            .requestMatchers(HttpMethod.DELETE , "/sobaslike/**").hasAuthority("FULL_ACCESS")
+                            //Recepcioner
+                            .requestMatchers(HttpMethod.PUT , "/recepcioner/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                            .requestMatchers(HttpMethod.POST , "/recepcioner/**").hasAuthority("FULL_ACCESS")
+                            .requestMatchers(HttpMethod.POST , "/recepcioner/**").hasAuthority("FULL_ACCESS")
+                            .requestMatchers(HttpMethod.DELETE , "/recepcioner/**").hasAuthority("FULL_ACCESS")
                             //Logout
                             .requestMatchers(HttpMethod.POST , "/auth/logout").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
                             //Admin
-                            .requestMatchers("/recepcioner/**").hasAuthority("FULL_ACCESS")
                             .requestMatchers("/admin/**").hasAuthority("FULL_ACCESS")
-                            .requestMatchers("/sobaslike/**").hasAuthority("FULL_ACCESS")
                             .requestMatchers("/actuator/**").hasAuthority("FULL_ACCESS")
                             .anyRequest().denyAll();
                 });

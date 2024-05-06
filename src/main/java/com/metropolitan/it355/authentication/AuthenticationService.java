@@ -47,7 +47,7 @@ public class AuthenticationService {
         user.setLozinka(passwordEncoder.encode(request.getPassword()));
         recepcionerRepository.save(user);
         String token = jwtService.generateToken(user, generateExtraClaims(user));
-        return  new LoginResponse(token);
+        return  new LoginResponse(token, user.getRole());
     }
 
 
@@ -60,7 +60,7 @@ public class AuthenticationService {
         authenticationManager.authenticate(authToken);
         Recepcioner user = userRepository.findByKorisnickoIme(authenticationRequest.getUsername()).get();
         String jwt = jwtService.generateToken(user, generateExtraClaims(user));
-        return new LoginResponse(jwt);
+        return new LoginResponse(jwt, user.getRole());
     }
 
     public void logout(String token) {
