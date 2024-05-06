@@ -56,7 +56,7 @@ public class WebSecurityConfig {
                     authConfig.requestMatchers(HttpMethod.GET , "/cenovnik/**").hasAuthority("READ_ONLY");
                     authConfig.requestMatchers(HttpMethod.POST , "/auth/logout").hasAuthority("READ_ONLY");
                     authConfig.requestMatchers("/error").permitAll();
-                    authConfig.requestMatchers("/gost/**", "/soba/**", "/cenovnik/**", "/recepcioner/**", "/rezervacija/**", "/transport/**", "/admin/**", "/actuator/**","/auth/logout").hasAuthority("FULL_ACCESS");
+                    authConfig.requestMatchers("/gost/**", "/soba/**", "/cenovnik/**", "/recepcioner/**", "/rezervacija/**", "/transport/**", "/admin/**","/sobaslike/**", "/actuator/**","/auth/logout").hasAuthority("FULL_ACCESS");
                     authConfig.anyRequest().denyAll();
                 });
 
