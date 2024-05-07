@@ -4,6 +4,7 @@ import com.metropolitan.it355.authentication.TokenBlackListService;
 import com.metropolitan.it355.entity.Recepcioner;
 import com.metropolitan.it355.jwt.JwtService;
 import com.metropolitan.it355.repository.RecepcionerRepository;
+import io.jsonwebtoken.security.SignatureException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,31 +33,50 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        String authHeader = request.getHeader("Authorization"); // Bearer jwt
+        try {
+            String authHeader = request.getHeader("Authorization"); // Bearer jwt
 
-        if(authHeader == null || !authHeader.startsWith("Bearer ")){
+            if(authHeader == null || !authHeader.startsWith("Bearer ")){
+                filterChain.doFilter(request, response);
+                //response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Please login - No token provided");
+                //extracted(response, "Please login - No token provided");
+                return;
+            }
+            String jwt = authHeader.split(" ")[1];
+
+            if (tokenBlackListService.isTokenBlacklisted(jwt)) {
+                //response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Please login - Token blacklisted");
+                extracted(response, "Please login - Token blacklisted");
+                return;
+            }
+
+            String username = jwtService.extractUsername(jwt);
+
+
+            Recepcioner user = userRepository.findByKorisnickoIme(username).get();
+
+            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                    username, null, user.getAuthorities()
+            );
+
+            SecurityContextHolder.getContext().setAuthentication(authToken);
+
             filterChain.doFilter(request, response);
-            return;
+        } catch (SignatureException e) {
+            System.err.println(e.getMessage());
+            //response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid JWT signature, please verify your JWT token. Please login.");
+            extracted(response, "Invalid token or no token found");
+        }catch (Exception e) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An internal error occurred");
         }
-        String jwt = authHeader.split(" ")[1];
 
-        if (tokenBlackListService.isTokenBlacklisted(jwt)) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            return;
-        }
+    }
 
-        String username = jwtService.extractUsername(jwt);
-
-
-        Recepcioner user = userRepository.findByKorisnickoIme(username).get();
-
-        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                username, null, user.getAuthorities()
-        );
-
-        SecurityContextHolder.getContext().setAuthentication(authToken);
-
-        filterChain.doFilter(request, response);
-
+    private static void extracted(HttpServletResponse response , String s) throws IOException {
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.setContentType("application/json");
+        response.getWriter().write("{\"error\": \""+s+"\"}");
+        response.getWriter().flush();
+        response.getWriter().close();
     }
 }
