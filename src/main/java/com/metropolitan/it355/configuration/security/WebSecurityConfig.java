@@ -80,7 +80,7 @@ public class WebSecurityConfig {
                             .requestMatchers(HttpMethod.DELETE , "/sobaslike/**").hasAuthority("FULL_ACCESS")
                             //Recepcioner
                             .requestMatchers(HttpMethod.PUT , "/recepcioner/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
-                            .requestMatchers(HttpMethod.POST , "/recepcioner/**").hasAuthority("FULL_ACCESS")
+                            .requestMatchers(HttpMethod.GET , "/recepcioner/**").hasAuthority("FULL_ACCESS")
                             .requestMatchers(HttpMethod.POST , "/recepcioner/**").hasAuthority("FULL_ACCESS")
                             .requestMatchers(HttpMethod.DELETE , "/recepcioner/**").hasAuthority("FULL_ACCESS")
                             //Logout

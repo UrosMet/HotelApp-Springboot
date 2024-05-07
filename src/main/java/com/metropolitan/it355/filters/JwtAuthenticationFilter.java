@@ -1,5 +1,6 @@
 package com.metropolitan.it355.filters;
 
+import com.metropolitan.it355.authentication.TokenBlackListService;
 import com.metropolitan.it355.entity.Recepcioner;
 import com.metropolitan.it355.jwt.JwtService;
 import com.metropolitan.it355.repository.RecepcionerRepository;
@@ -24,11 +25,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private RecepcionerRepository userRepository;
 
+    @Autowired
+    private TokenBlackListService tokenBlackListService;
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
-        // 1 obtain header that contains jwt
 
         String authHeader = request.getHeader("Authorization"); // Bearer jwt
 
@@ -36,14 +38,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-
-        // 2 obtain jwt token
         String jwt = authHeader.split(" ")[1];
 
-        // 3 obtain subject/username in jwt
+        if (tokenBlackListService.isTokenBlacklisted(jwt)) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        }
+
         String username = jwtService.extractUsername(jwt);
 
-        // 4 set authenticate object inside our secuirty context
 
         Recepcioner user = userRepository.findByKorisnickoIme(username).get();
 
@@ -53,10 +56,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         SecurityContextHolder.getContext().setAuthentication(authToken);
 
-        // 5 execute rest of the filters
-
         filterChain.doFilter(request, response);
-
 
     }
 }
