@@ -48,7 +48,7 @@ public class AuthenticationService {
         user.setLozinka(passwordEncoder.encode(request.getPassword()));
         recepcionerRepository.save(user);
         String token = jwtService.generateToken(user, generateExtraClaims(user));
-        return  new LoginResponse(token, user.getRole());
+        return  new LoginResponse(token);
     }
 
 
@@ -61,7 +61,7 @@ public class AuthenticationService {
         authenticationManager.authenticate(authToken);
         Recepcioner user = userRepository.findByKorisnickoIme(authenticationRequest.getUsername()).get();
         String jwt = jwtService.generateToken(user, generateExtraClaims(user));
-        return new LoginResponse(jwt, user.getRole());
+        return new LoginResponse(jwt);
     }
 
     public void logout(String token) {
@@ -70,13 +70,13 @@ public class AuthenticationService {
     }
 
 
-
-
-
     private Map<String, Object> generateExtraClaims(Recepcioner user) {
         Map<String, Object> extraClaims = new HashMap<>();
-        extraClaims.put("name", user.getIme());
-        extraClaims.put("role", user.getRole());
+        extraClaims.put("ID_Recepcionera" , user.getId());
+        extraClaims.put("Ime" , user.getIme());
+        extraClaims.put("Prezime" , user.getPrezime());
+        extraClaims.put("Korisnicko_Ime" , user.getKorisnickoIme());
+        extraClaims.put("Role" , user.getRole());
         return extraClaims;
     }
 }
