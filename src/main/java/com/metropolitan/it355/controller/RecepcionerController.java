@@ -3,10 +3,13 @@ package com.metropolitan.it355.controller;
 import com.metropolitan.it355.entity.Recepcioner;
 import com.metropolitan.it355.services.RecepcionerService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
@@ -21,8 +24,11 @@ public class RecepcionerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Recepcioner> findById(@PathVariable int id) {
-        return ResponseEntity.ok(recepcionerService.getById(id));
+    public ResponseEntity<?> findById(@PathVariable int id) {
+        if (recepcionerService.getById(id).isPresent()){
+            return ResponseEntity.ok(recepcionerService.getById(id).get());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Not found"));
     }
 
     @PostMapping
@@ -36,10 +42,14 @@ public class RecepcionerController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Recepcioner> delete(@PathVariable int id) {
-        Recepcioner recepcioner = recepcionerService.getById(id);
-        recepcionerService.delete(id);
-        return ResponseEntity.ok(recepcioner);
+    public ResponseEntity<?> delete(@PathVariable int id) {
+        Optional<?> recepcioner = recepcionerService.getById(id);
+
+        if (recepcioner.isPresent()) {
+            recepcionerService.delete(id);
+            return ResponseEntity.ok(recepcioner);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Not found"));
     }
 
 }

@@ -8,10 +8,10 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -19,6 +19,7 @@ import java.util.Optional;
 public class RecepcionerServiceImpl implements RecepcionerService, UserDetailsService {
 
     final RecepcionerRepository recepcionerRepository;
+    private final PasswordEncoder passwordEncoder;
 
     /**
      * Metoda vraca sve Recepcionere
@@ -37,8 +38,8 @@ public class RecepcionerServiceImpl implements RecepcionerService, UserDetailsSe
      * @return Recepcioner
      */
     @Override
-    public Recepcioner getById(int id) {
-        return recepcionerRepository.findById(id).orElseThrow(()->new NoSuchElementException("Not found"));
+    public Optional<?> getById(int id) {
+        return recepcionerRepository.findById(id);
     }
 
     /**
@@ -60,6 +61,7 @@ public class RecepcionerServiceImpl implements RecepcionerService, UserDetailsSe
      */
     @Override
     public Recepcioner update(Recepcioner recepcioner) {
+        recepcioner.setLozinka(passwordEncoder.encode(recepcioner.getLozinka()));
         return recepcionerRepository.save(recepcioner);
     }
 

@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -33,8 +33,8 @@ public class TransportServiceImpl implements TransportService {
      * @return Transport
      */
     @Override
-    public Transport getById(int id) {
-        return transportRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No transport found with id: " + id));
+    public Optional<?> getById(int id) {
+        return transportRepository.findById(id);
     }
 
     /**

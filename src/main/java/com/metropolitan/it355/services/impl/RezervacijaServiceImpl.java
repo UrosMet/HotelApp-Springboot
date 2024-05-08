@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -33,8 +33,8 @@ public class RezervacijaServiceImpl implements RezervacijaService {
      * @return Rezervacija
      */
     @Override
-    public Rezervacija getById(int id) {
-        return rezervacijaRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Rezervacija ne postoji"));
+    public Optional<?> getById(int id) {
+        return rezervacijaRepository.findById(id);
     }
 
     /**

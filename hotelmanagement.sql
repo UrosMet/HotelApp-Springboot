@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2024 at 11:08 PM
+-- Generation Time: May 08, 2024 at 01:24 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -29,11 +29,12 @@ USE `hotelmanagement`;
 -- Table structure for table `cenovnik`
 --
 
+DROP TABLE IF EXISTS `cenovnik`;
 CREATE TABLE IF NOT EXISTS `cenovnik` (
                                           `ID_Cenovnika` int(11) NOT NULL AUTO_INCREMENT,
                                           `Cena_Po_Noci` decimal(10,2) DEFAULT NULL,
                                           PRIMARY KEY (`ID_Cenovnika`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `cenovnik`
@@ -45,7 +46,10 @@ INSERT INTO `cenovnik` (`ID_Cenovnika`, `Cena_Po_Noci`) VALUES
                                                             (3, '150.00'),
                                                             (4, '90.00'),
                                                             (5, '110.00'),
-                                                            (7, '200.00');
+                                                            (7, '200.00'),
+                                                            (8, '200.00'),
+                                                            (9, '200.00'),
+                                                            (10, '200.00');
 
 -- --------------------------------------------------------
 
@@ -53,6 +57,7 @@ INSERT INTO `cenovnik` (`ID_Cenovnika`, `Cena_Po_Noci`) VALUES
 -- Table structure for table `gost`
 --
 
+DROP TABLE IF EXISTS `gost`;
 CREATE TABLE IF NOT EXISTS `gost` (
                                       `ID_Gosta` int(11) NOT NULL AUTO_INCREMENT,
                                       `Ime` varchar(50) DEFAULT NULL,
@@ -61,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `gost` (
                                       `Datum_Odlaska` date DEFAULT NULL,
                                       `Tip_Gosta` varchar(10) DEFAULT NULL,
                                       PRIMARY KEY (`ID_Gosta`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `gost`
@@ -72,7 +77,9 @@ INSERT INTO `gost` (`ID_Gosta`, `Ime`, `Prezime`, `Datum_Dolaska`, `Datum_Odlask
                                                                                                      (2, 'Ana', 'Anić', '2024-04-16', '2024-04-22', 'VIP'),
                                                                                                      (3, 'Jovan', 'Jovanović', '2024-04-18', '2024-04-25', 'Regular'),
                                                                                                      (4, 'Milica', 'Milivojević', '2024-04-20', '2024-04-24', 'VIP'),
-                                                                                                     (5, 'Nikola', 'Nikolić', '2024-04-22', '2024-04-26', 'Regular');
+                                                                                                     (5, 'Nikola', 'Nikolić', '2024-04-22', '2024-04-26', 'Regular'),
+                                                                                                     (9, 'Uros', 'Mirkovic', '2024-04-22', '2024-04-25', 'VIP'),
+                                                                                                     (10, 'Uros', 'Mirkovic', '2024-04-22', '2024-04-25', 'Regular');
 
 -- --------------------------------------------------------
 
@@ -80,6 +87,7 @@ INSERT INTO `gost` (`ID_Gosta`, `Ime`, `Prezime`, `Datum_Dolaska`, `Datum_Odlask
 -- Table structure for table `recepcioner`
 --
 
+DROP TABLE IF EXISTS `recepcioner`;
 CREATE TABLE IF NOT EXISTS `recepcioner` (
                                              `ID_Recepcionera` int(11) NOT NULL AUTO_INCREMENT,
                                              `Ime` varchar(50) DEFAULT NULL,
@@ -89,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `recepcioner` (
                                              `Profilna_Slika` varchar(255) DEFAULT NULL,
                                              `Role` varchar(50) NOT NULL DEFAULT 'USER',
                                              PRIMARY KEY (`ID_Recepcionera`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `recepcioner`
@@ -100,11 +108,14 @@ INSERT INTO `recepcioner` (`ID_Recepcionera`, `Ime`, `Prezime`, `Korisnicko_Ime`
                                                                                                                            (2, 'Jelena', 'Jelenić', 'jelena456', '$2a$10$Mrawk7jWNJaDqDOEd4//Rupte6wFfP4F2Gl3XXXCdUYig7Aiet8S2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png', 'USER'),
                                                                                                                            (3, 'Marko', 'Marković', 'marko789', '$2a$10$Mrawk7jWNJaDqDOEd4//Rupte6wFfP4F2Gl3XXXCdUYig7Aiet8S2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png', 'USER'),
                                                                                                                            (4, 'Ana', 'Anić', 'anaanica', '$2a$10$Mrawk7jWNJaDqDOEd4//Rupte6wFfP4F2Gl3XXXCdUYig7Aiet8S2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png', 'USER'),
-                                                                                                                           (5, 'Nikola', 'Nikolić', 'nikolanik', '$2a$10$Mrawk7jWNJaDqDOEd4//Rupte6wFfP4F2Gl3XXXCdUYig7Aiet8S2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png', 'USER'),
+                                                                                                                           (5, 'Test', 'test', 'test', '$2a$10$csOboecSA0tP5RrUI6qdcOZAceXYVJ2BQJVe/Mqesz5L2Ph0dK6ZG', NULL, 'USER'),
                                                                                                                            (6, 'Uros', 'Mirkovic', 'uros', '$2a$10$Mrawk7jWNJaDqDOEd4//Rupte6wFfP4F2Gl3XXXCdUYig7Aiet8S2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png', 'ADMIN'),
                                                                                                                            (9, 'Uros', 'Mirkovic', 'UrosAdmin', '$2a$10$Mrawk7jWNJaDqDOEd4//Rupte6wFfP4F2Gl3XXXCdUYig7Aiet8S2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png', 'ADMIN'),
                                                                                                                            (10, 'Uros', 'Mirkovic', 'UrosUser', '$2a$10$JpLiwI40prZITGxFRDM8rec7sMpYbfDXUvcNN6M2SmkwF9OgJO0..', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png', 'USER'),
-                                                                                                                           (13, 'Test', 'Test', 'Test', '$2a$10$HKMfsUcEZDFVhdU0e.TpmObxAeBuXs1zlCWR2U0Q/XN8jYBq/5ccy', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png', 'USER');
+                                                                                                                           (13, 'Test', 'Test', 'Test', '$2a$10$HKMfsUcEZDFVhdU0e.TpmObxAeBuXs1zlCWR2U0Q/XN8jYBq/5ccy', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png', 'USER'),
+                                                                                                                           (14, 'Test', 'test', 'test', 'test', NULL, 'USER'),
+                                                                                                                           (15, 'Test', 'Test', 'Test', '$2a$10$A2sfjUlh90ci7fR5nuzQ.OgOe0PqwaJMkYidPw5W7R5AKuKxpuxKa', NULL, 'USER'),
+                                                                                                                           (16, 'Test', 'Test', 'Test', '$2a$10$KRwXx/NXvy2iaBd3IupOreDlocGfM8TJkGWFR0TzeaL7sVpXzEYju', NULL, 'USER');
 
 -- --------------------------------------------------------
 
@@ -112,6 +123,7 @@ INSERT INTO `recepcioner` (`ID_Recepcionera`, `Ime`, `Prezime`, `Korisnicko_Ime`
 -- Table structure for table `rezervacija`
 --
 
+DROP TABLE IF EXISTS `rezervacija`;
 CREATE TABLE IF NOT EXISTS `rezervacija` (
                                              `ID_Rezervacije` int(11) NOT NULL AUTO_INCREMENT,
                                              `ID_Gosta` int(11) DEFAULT NULL,
@@ -123,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `rezervacija` (
                                              KEY `rezervacija_ibfk_4` (`ID_Gosta`),
                                              KEY `rezervacija_ibfk_1` (`ID_Sobe`),
                                              KEY `rezervacija_ibfk_2` (`ID_Recepcioner`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `rezervacija`
@@ -134,7 +146,8 @@ INSERT INTO `rezervacija` (`ID_Rezervacije`, `ID_Gosta`, `ID_Sobe`, `ID_Recepcio
                                                                                                                                  (2, 2, 3, 1, '2024-04-13', 3),
                                                                                                                                  (3, 3, 4, 3, '2024-04-14', 2),
                                                                                                                                  (4, 4, 1, 4, '2024-04-15', 5),
-                                                                                                                                 (5, 5, 5, 5, '2024-04-16', 2);
+                                                                                                                                 (5, 5, 5, 5, '2024-04-16', 2),
+                                                                                                                                 (7, 3, 4, 5, '2024-04-24', 3);
 
 -- --------------------------------------------------------
 
@@ -142,6 +155,7 @@ INSERT INTO `rezervacija` (`ID_Rezervacije`, `ID_Gosta`, `ID_Sobe`, `ID_Recepcio
 -- Table structure for table `soba`
 --
 
+DROP TABLE IF EXISTS `soba`;
 CREATE TABLE IF NOT EXISTS `soba` (
                                       `ID_Sobe` int(11) NOT NULL AUTO_INCREMENT,
                                       `Broj_Kreveta` int(11) DEFAULT NULL,
@@ -150,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `soba` (
                                       `ID_Cenovnik` int(11) NOT NULL,
                                       PRIMARY KEY (`ID_Sobe`),
                                       KEY `fk_soba_cenovnik` (`ID_Cenovnik`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `soba`
@@ -161,7 +175,8 @@ INSERT INTO `soba` (`ID_Sobe`, `Broj_Kreveta`, `Tip_Kreveta`, `Klima`, `ID_Cenov
                                                                                           (2, 2, 'Double', 0, 2),
                                                                                           (3, 2, 'Double', 1, 3),
                                                                                           (4, 3, 'Triple', 1, 4),
-                                                                                          (5, 1, 'Single', 0, 5);
+                                                                                          (5, 1, 'Single', 0, 5),
+                                                                                          (8, 2, 'Test', 0, 4);
 
 -- --------------------------------------------------------
 
@@ -169,13 +184,14 @@ INSERT INTO `soba` (`ID_Sobe`, `Broj_Kreveta`, `Tip_Kreveta`, `Klima`, `ID_Cenov
 -- Table structure for table `soba_slika`
 --
 
+DROP TABLE IF EXISTS `soba_slika`;
 CREATE TABLE IF NOT EXISTS `soba_slika` (
                                             `id` int(11) NOT NULL AUTO_INCREMENT,
                                             `Slika_Url` varchar(255) NOT NULL,
                                             `Id_Soba` int(11) NOT NULL,
                                             PRIMARY KEY (`id`),
                                             KEY `fk_soba_slika` (`Id_Soba`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `soba_slika`
@@ -187,7 +203,10 @@ INSERT INTO `soba_slika` (`id`, `Slika_Url`, `Id_Soba`) VALUES
                                                             (3, 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fdemo.goodlayers.com%2Fhotelmaster%2Fwp-content%2Fuploads%2F2015%2F03%2Fphotodune-3973289-hotel-room-m.jpg&f=1&nofb=1&ipt=6cc42ec04233973c4c802080b840ff9a2c5608562fe5fa3d0e0fdef26e9db287&ipo=images', 3),
                                                             (4, 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fdemo.goodlayers.com%2Fhotelmaster%2Fwp-content%2Fuploads%2F2015%2F03%2Fphotodune-3973289-hotel-room-m.jpg&f=1&nofb=1&ipt=6cc42ec04233973c4c802080b840ff9a2c5608562fe5fa3d0e0fdef26e9db287&ipo=images', 4),
                                                             (5, 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fdemo.goodlayers.com%2Fhotelmaster%2Fwp-content%2Fuploads%2F2015%2F03%2Fphotodune-3973289-hotel-room-m.jpg&f=1&nofb=1&ipt=6cc42ec04233973c4c802080b840ff9a2c5608562fe5fa3d0e0fdef26e9db287&ipo=images', 1),
-                                                            (6, 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fdemo.goodlayers.com%2Fhotelmaster%2Fwp-content%2Fuploads%2F2015%2F03%2Fphotodune-3973289-hotel-room-m.jpg&f=1&nofb=1&ipt=6cc42ec04233973c4c802080b840ff9a2c5608562fe5fa3d0e0fdef26e9db287&ipo=images', 5);
+                                                            (6, 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fdemo.goodlayers.com%2Fhotelmaster%2Fwp-content%2Fuploads%2F2015%2F03%2Fphotodune-3973289-hotel-room-m.jpg&f=1&nofb=1&ipt=6cc42ec04233973c4c802080b840ff9a2c5608562fe5fa3d0e0fdef26e9db287&ipo=images', 5),
+                                                            (8, 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fdemo.goodlayers.com%2Fhotelmaster%2Fwp-content%2Fuploads%2F2015%2F03%2Fphotodune-3973289-hotel-room-m.jpg&f=1&nofb=1&ipt=6cc42ec04233973c4c802080b840ff9a2c5608562fe5fa3d0e0fdef26e9db287&ipo=images', 3),
+                                                            (13, '', 1),
+                                                            (14, '', 3);
 
 -- --------------------------------------------------------
 
@@ -195,6 +214,7 @@ INSERT INTO `soba_slika` (`id`, `Slika_Url`, `Id_Soba`) VALUES
 -- Table structure for table `transport`
 --
 
+DROP TABLE IF EXISTS `transport`;
 CREATE TABLE IF NOT EXISTS `transport` (
                                            `ID_Transporta` int(11) NOT NULL AUTO_INCREMENT,
                                            `ID_Gosta` int(11) DEFAULT NULL,
@@ -202,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `transport` (
                                            `Vreme_Narucivanja` datetime DEFAULT NULL,
                                            PRIMARY KEY (`ID_Transporta`),
                                            KEY `fk1` (`ID_Gosta`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `transport`
@@ -213,7 +233,8 @@ INSERT INTO `transport` (`ID_Transporta`, `ID_Gosta`, `Vrsta_Transporta`, `Vreme
                                                                                                    (2, 2, 'Shuttle', '2024-04-16 11:30:00'),
                                                                                                    (3, 3, 'Limuzina', '2024-04-17 09:15:00'),
                                                                                                    (4, 4, 'Rent-a-car', '2024-04-18 08:45:00'),
-                                                                                                   (5, 5, 'Taxi', '2024-04-19 07:30:00');
+                                                                                                   (5, 5, 'Taxi', '2024-04-19 07:30:00'),
+                                                                                                   (10, 4, 'Taxi', '2024-05-06 22:29:48');
 
 --
 -- Constraints for dumped tables

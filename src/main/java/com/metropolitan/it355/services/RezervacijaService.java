@@ -3,6 +3,7 @@ package com.metropolitan.it355.services;
 import com.metropolitan.it355.entity.Rezervacija;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RezervacijaService {
     /**
@@ -16,7 +17,7 @@ public interface RezervacijaService {
      * @param id
      * @return Rezervacija
      */
-    Rezervacija getById(int id);
+    Optional<?> getById(int id);
 
     /**
      * Metoda dodaje jednu rezervaciju u bazu

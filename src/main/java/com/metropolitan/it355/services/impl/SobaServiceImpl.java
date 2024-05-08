@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -33,8 +33,8 @@ public class SobaServiceImpl implements SobaService {
      * @return Soba
      */
     @Override
-    public Soba getById(int id) {
-        return sobaRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Not found"));
+    public Optional<?> getById(int id) {
+        return sobaRepository.findById(id);
     }
 
     /**

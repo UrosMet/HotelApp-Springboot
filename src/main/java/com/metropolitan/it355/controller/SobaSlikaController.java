@@ -3,10 +3,13 @@ package com.metropolitan.it355.controller;
 import com.metropolitan.it355.entity.SobaSlika;
 import com.metropolitan.it355.services.SobaSlikaService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -20,8 +23,11 @@ public class SobaSlikaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SobaSlika> findById(@PathVariable int id) {
-        return ResponseEntity.ok(sobaSlikaService.getById(id));
+    public ResponseEntity<?> findById(@PathVariable int id) {
+        if (sobaSlikaService.getById(id).isPresent()){
+            return ResponseEntity.ok(sobaSlikaService.getById(id).get());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Not found"));
     }
 
     @GetMapping("/soba/{idSoba}")
@@ -40,9 +46,13 @@ public class SobaSlikaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<SobaSlika> delete(@PathVariable int id) {
-        SobaSlika sobaSlika = sobaSlikaService.getById(id);
-        sobaSlikaService.delete(id);
-        return ResponseEntity.ok(sobaSlika);
+    public ResponseEntity<?> delete(@PathVariable int id) {
+        Optional<?> sobaSlika = sobaSlikaService.getById(id);
+
+        if (sobaSlika.isPresent()) {
+            sobaSlikaService.delete(id);
+            return ResponseEntity.ok(sobaSlika);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Not found"));
     }
 }

@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -33,8 +33,8 @@ public class GostServiceImpl implements GostService {
      * @return Gost
      */
     @Override
-    public Gost getById(int id) {
-        return gostRepository.findById(id).orElseThrow(()-> new NoSuchElementException("Not found"));
+    public Optional<?> getById(int id) {
+        return gostRepository.findById(id);
     }
 
     /**

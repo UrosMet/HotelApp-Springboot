@@ -3,10 +3,13 @@ package com.metropolitan.it355.controller;
 import com.metropolitan.it355.entity.Soba;
 import com.metropolitan.it355.services.SobaService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
@@ -21,8 +24,11 @@ public class SobaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Soba> findById(@PathVariable int id) {
-        return ResponseEntity.ok(sobaService.getById(id));
+    public ResponseEntity<?> findById(@PathVariable int id) {
+        if (sobaService.getById(id).isPresent()){
+            return ResponseEntity.ok(sobaService.getById(id).get());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Not found"));
     }
 
     @PostMapping
@@ -36,10 +42,14 @@ public class SobaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Soba> delete(@PathVariable int id) {
-        Soba soba = sobaService.getById(id);
-        sobaService.delete(id);
-        return ResponseEntity.ok(soba);
+    public ResponseEntity<?> delete(@PathVariable int id) {
+        Optional<?> soba = sobaService.getById(id);
+
+        if (soba.isPresent()) {
+            sobaService.delete(id);
+            return ResponseEntity.ok(soba);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Not found"));
     }
 
 }

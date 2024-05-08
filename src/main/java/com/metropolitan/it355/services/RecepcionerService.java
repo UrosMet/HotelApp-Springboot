@@ -3,6 +3,7 @@ package com.metropolitan.it355.services;
 import com.metropolitan.it355.entity.Recepcioner;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RecepcionerService {
 
@@ -17,7 +18,7 @@ public interface RecepcionerService {
      * @param id
      * @return Recepcioner
      */
-    Recepcioner getById(int id);
+    Optional<?> getById(int id);
 
     /**
      * Metoda dodaje jednog Recepcionera u bazu

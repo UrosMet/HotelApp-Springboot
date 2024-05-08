@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -33,8 +33,8 @@ public class CenovnikServiceImpl implements CenovnikService {
      * @return Cenovnik
      */
     @Override
-    public Cenovnik getById(int id) {
-        return cenovnikRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Not found"));
+    public Optional<Cenovnik> getById(int id) {
+        return cenovnikRepository.findById(id);
     }
 
     /**

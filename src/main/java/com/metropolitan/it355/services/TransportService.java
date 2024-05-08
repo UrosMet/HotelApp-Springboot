@@ -3,6 +3,7 @@ package com.metropolitan.it355.services;
 import com.metropolitan.it355.entity.Transport;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TransportService {
     /**
@@ -16,7 +17,7 @@ public interface TransportService {
      * @param id
      * @return Transport
      */
-    Transport getById(int id);
+    Optional<?> getById(int id);
 
     /**
      * Metoda dodaje jednog Transporta u bazu

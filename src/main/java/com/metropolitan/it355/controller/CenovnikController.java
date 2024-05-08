@@ -3,10 +3,13 @@ package com.metropolitan.it355.controller;
 import com.metropolitan.it355.entity.Cenovnik;
 import com.metropolitan.it355.services.CenovnikService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
@@ -21,8 +24,11 @@ public class CenovnikController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cenovnik> findById(@PathVariable int id) {
-        return ResponseEntity.ok(cenovnikService.getById(id));
+    public ResponseEntity<?> findById(@PathVariable int id) {
+        if (cenovnikService.getById(id).isPresent()){
+            return ResponseEntity.ok(cenovnikService.getById(id).get());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Not found"));
     }
 
     @PostMapping
@@ -36,10 +42,14 @@ public class CenovnikController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Cenovnik> delete(@PathVariable int id) {
-        Cenovnik cenovnik = cenovnikService.getById(id);
-        cenovnikService.delete(id);
-        return ResponseEntity.ok(cenovnik);
+    public ResponseEntity<?> delete(@PathVariable int id) {
+        Optional<?> cenovnik = cenovnikService.getById(id);
+
+        if (cenovnik.isPresent()) {
+            cenovnikService.delete(id);
+            return ResponseEntity.ok(cenovnik);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Not found"));
     }
 
 }

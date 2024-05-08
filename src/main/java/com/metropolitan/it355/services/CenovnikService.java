@@ -3,6 +3,7 @@ package com.metropolitan.it355.services;
 import com.metropolitan.it355.entity.Cenovnik;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CenovnikService {
     /**
@@ -16,7 +17,7 @@ public interface CenovnikService {
      * @param id
      * @return Cenovnik
      */
-    Cenovnik getById(int id);
+    Optional<?> getById(int id);
 
     /**
      * Metoda dodaje jednog Cenovnika u bazu

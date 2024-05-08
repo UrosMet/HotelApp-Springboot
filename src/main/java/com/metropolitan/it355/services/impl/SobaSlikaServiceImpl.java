@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -33,8 +33,8 @@ public class SobaSlikaServiceImpl implements SobaSlikaService {
      * @return SobaSlika
      */
     @Override
-    public SobaSlika getById(int id) {
-        return sobaSlikaRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Not found!"));
+    public Optional<?> getById(int id) {
+        return sobaSlikaRepository.findById(id);
     }
 
     /**

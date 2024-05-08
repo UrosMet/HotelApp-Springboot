@@ -3,6 +3,7 @@ package com.metropolitan.it355.services;
 import com.metropolitan.it355.entity.SobaSlika;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SobaSlikaService {
 
@@ -17,7 +18,7 @@ public interface SobaSlikaService {
      * @param id
      * @return SobaSlika
      */
-    SobaSlika getById(int id);
+    Optional<?> getById(int id);
 
     /**
      * Metoda dodaje jednu sliku u bazu

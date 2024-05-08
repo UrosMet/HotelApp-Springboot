@@ -5,7 +5,7 @@ import com.metropolitan.it355.dto.LoginResponse;
 import com.metropolitan.it355.entity.Recepcioner;
 import com.metropolitan.it355.jwt.JwtService;
 import com.metropolitan.it355.repository.RecepcionerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,28 +16,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@AllArgsConstructor
 public class AuthenticationService {
-    @Autowired
-    private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private RecepcionerRepository userRepository;
-
-    @Autowired
-    private JwtService jwtService;
-
-    @Autowired
-    private TokenBlackListService tokenBlackListService;
-
-
+    private final AuthenticationManager authenticationManager;
+    private final RecepcionerRepository userRepository;
+    private final JwtService jwtService;
+    private final TokenBlackListService tokenBlackListService;
     private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private RecepcionerRepository recepcionerRepository;
 
-    public AuthenticationService(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
+
 
 
     public LoginResponse register(Recepcioner request){
@@ -46,7 +35,7 @@ public class AuthenticationService {
         user.setPrezime(request.getPrezime());
         user.setKorisnickoIme(request.getKorisnickoIme());
         user.setLozinka(passwordEncoder.encode(request.getPassword()));
-        recepcionerRepository.save(user);
+        userRepository.save(user);
         String token = jwtService.generateToken(user, generateExtraClaims(user));
         return  new LoginResponse(token);
     }

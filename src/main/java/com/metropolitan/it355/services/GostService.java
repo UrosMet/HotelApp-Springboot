@@ -3,6 +3,7 @@ package com.metropolitan.it355.services;
 import com.metropolitan.it355.entity.Gost;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface GostService {
 
@@ -17,7 +18,7 @@ public interface GostService {
      * @param id
      * @return Gost
      */
-    Gost getById(int id);
+    Optional<?> getById(int id);
 
     /**
      * Metoda dodaje jednog gosta u bazu

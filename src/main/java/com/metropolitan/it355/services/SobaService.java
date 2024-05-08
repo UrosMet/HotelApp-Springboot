@@ -3,6 +3,7 @@ package com.metropolitan.it355.services;
 import com.metropolitan.it355.entity.Soba;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SobaService {
     /**
@@ -16,7 +17,7 @@ public interface SobaService {
      * @param id
      * @return Soba
      */
-    Soba getById(int id);
+    Optional<?> getById(int id);
 
     /**
      * Metoda dodaje jednu sobu u bazu
