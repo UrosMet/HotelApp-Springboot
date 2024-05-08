@@ -84,8 +84,8 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.POST , "/auth/logout").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
                         //Admin
                         .requestMatchers("/admin/**").hasAuthority("FULL_ACCESS")
-                        //.requestMatchers("/actuator/**").hasAuthority("FULL_ACCESS")
-                        .requestMatchers("/actuator/**").permitAll()
+                        .requestMatchers("/actuator/**").hasAuthority("FULL_ACCESS")
+                        //.requestMatchers("/actuator/**").permitAll()
                         .anyRequest().denyAll());
 
         return http.build();
