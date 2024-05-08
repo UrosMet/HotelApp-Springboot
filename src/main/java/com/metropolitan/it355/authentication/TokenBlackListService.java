@@ -10,7 +10,7 @@ public class TokenBlackListService {
     private final Set<String> blacklist = ConcurrentHashMap.newKeySet();
 
     public void blacklistToken(String token) {
-        System.out.println(token);
+        System.err.println("Blacklisted token : " + token);
         blacklist.add(token);
     }
 

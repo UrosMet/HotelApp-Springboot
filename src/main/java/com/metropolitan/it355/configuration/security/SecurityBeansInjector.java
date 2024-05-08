@@ -24,7 +24,6 @@ public class SecurityBeansInjector {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-
     @Bean
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();

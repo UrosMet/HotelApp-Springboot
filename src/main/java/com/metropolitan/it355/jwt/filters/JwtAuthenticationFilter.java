@@ -27,10 +27,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException,JwtException {
-
         try {
             String authHeader = request.getHeader("Authorization"); // Bearer jwt
-
             if(authHeader == null || !authHeader.startsWith("Bearer ")){
                 filterChain.doFilter(request, response);
                 return;
@@ -41,7 +39,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 extracted(response, "Please login - Token blacklisted");
                 return;
             }
-
             String username = jwtService.extractUsername(jwt);
             Recepcioner user = userRepository.findByKorisnickoIme(username).get();
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
@@ -55,7 +52,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             System.err.println(e.getMessage());
             extracted(response, e.getMessage());
         }catch (Exception e) {
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An internal error occurred");
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
 

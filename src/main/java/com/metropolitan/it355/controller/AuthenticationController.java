@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/auth")
@@ -27,13 +29,13 @@ public class AuthenticationController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<String> logout(@RequestHeader(value = "Authorization") String authHeader) {
+    public ResponseEntity<?> logout(@RequestHeader(value = "Authorization") String authHeader) {
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
             authenticationService.logout(token);
-            return ResponseEntity.ok("Logged out successfully.");
+            return ResponseEntity.ok(Map.of("message", "Logged out successfully."));
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid authorization header.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("message", "Invalid authorization header."));
         }
     }
 
