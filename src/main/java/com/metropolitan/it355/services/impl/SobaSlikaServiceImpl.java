@@ -1,9 +1,12 @@
 package com.metropolitan.it355.services.impl;
 
 
+import com.metropolitan.it355.entity.Soba;
 import com.metropolitan.it355.entity.SobaSlika;
 import com.metropolitan.it355.repository.SobaSlikaRepository;
+import com.metropolitan.it355.services.SobaService;
 import com.metropolitan.it355.services.SobaSlikaService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,7 @@ import java.util.Optional;
 public class SobaSlikaServiceImpl implements SobaSlikaService {
 
     final SobaSlikaRepository sobaSlikaRepository;
+    final SobaService sobaService;
 
     /**
      * Metoda vraca sve slike sobe
@@ -78,6 +82,24 @@ public class SobaSlikaServiceImpl implements SobaSlikaService {
     @Override
     public List<SobaSlika> getAllByIdSoba(Integer idSoba) {
         return sobaSlikaRepository.findAllByIdSoba(idSoba);
+    }
+
+    /**
+     * Metoda cuva vise slika za jedan smestaj
+     *
+     * @param sobaSlikaId
+     * @param imageUrl
+     */
+    @Override
+    @Transactional
+    public void savePhotos(int sobaSlikaId, String imageUrl) {
+        Soba soba = (Soba) sobaService.getById(sobaSlikaId)
+                .orElseThrow(() -> new RuntimeException("Soba ne postoji sa ovim  id: " + sobaSlikaId));
+
+        SobaSlika photo = new SobaSlika();
+        photo.setIdSoba(soba);
+        photo.setSlikaUrl(imageUrl);
+        sobaSlikaRepository.save(photo);
     }
 
 

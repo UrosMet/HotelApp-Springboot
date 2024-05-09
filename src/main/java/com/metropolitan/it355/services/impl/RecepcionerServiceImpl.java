@@ -10,7 +10,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +26,7 @@ public class RecepcionerServiceImpl implements RecepcionerService, UserDetailsSe
 
     final RecepcionerRepository recepcionerRepository;
     private final PasswordEncoder passwordEncoder;
+    private final Path rootLocation = Paths.get("./src/main/resources/images");
 
     /**
      * Metoda vraca sve Recepcionere
@@ -73,6 +80,30 @@ public class RecepcionerServiceImpl implements RecepcionerService, UserDetailsSe
     @Override
     public void delete(int id) {
         recepcionerRepository.deleteById(id);
+    }
+
+    /**
+     * Metoda dodaje ili updejtuje sliku
+     *
+     * @param file
+     * @return path
+     */
+    @Override
+    public String storeImage(MultipartFile file) {
+        try {
+            String originalFilename = file.getOriginalFilename();
+            String cleanedFilename = originalFilename != null ? originalFilename.replace(" ", "_") : null;
+
+            if (cleanedFilename != null) {
+                Path targetLocation = rootLocation.resolve(cleanedFilename);
+                Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+                return cleanedFilename;
+            } else {
+                throw new RuntimeException("File name is invalid");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to store file", e);
+        }
     }
 
     @Override

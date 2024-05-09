@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2024 at 01:24 PM
+-- Generation Time: May 10, 2024 at 01:21 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -29,7 +29,6 @@ USE `hotelmanagement`;
 -- Table structure for table `cenovnik`
 --
 
-DROP TABLE IF EXISTS `cenovnik`;
 CREATE TABLE IF NOT EXISTS `cenovnik` (
                                           `ID_Cenovnika` int(11) NOT NULL AUTO_INCREMENT,
                                           `Cena_Po_Noci` decimal(10,2) DEFAULT NULL,
@@ -57,7 +56,6 @@ INSERT INTO `cenovnik` (`ID_Cenovnika`, `Cena_Po_Noci`) VALUES
 -- Table structure for table `gost`
 --
 
-DROP TABLE IF EXISTS `gost`;
 CREATE TABLE IF NOT EXISTS `gost` (
                                       `ID_Gosta` int(11) NOT NULL AUTO_INCREMENT,
                                       `Ime` varchar(50) DEFAULT NULL,
@@ -87,7 +85,6 @@ INSERT INTO `gost` (`ID_Gosta`, `Ime`, `Prezime`, `Datum_Dolaska`, `Datum_Odlask
 -- Table structure for table `recepcioner`
 --
 
-DROP TABLE IF EXISTS `recepcioner`;
 CREATE TABLE IF NOT EXISTS `recepcioner` (
                                              `ID_Recepcionera` int(11) NOT NULL AUTO_INCREMENT,
                                              `Ime` varchar(50) DEFAULT NULL,
@@ -97,25 +94,21 @@ CREATE TABLE IF NOT EXISTS `recepcioner` (
                                              `Profilna_Slika` varchar(255) DEFAULT NULL,
                                              `Role` varchar(50) NOT NULL DEFAULT 'USER',
                                              PRIMARY KEY (`ID_Recepcionera`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `recepcioner`
 --
 
 INSERT INTO `recepcioner` (`ID_Recepcionera`, `Ime`, `Prezime`, `Korisnicko_Ime`, `Lozinka`, `Profilna_Slika`, `Role`) VALUES
-                                                                                                                           (1, 'Stefan', 'Stefanović', 'stefan123', '$2a$10$Mrawk7jWNJaDqDOEd4//Rupte6wFfP4F2Gl3XXXCdUYig7Aiet8S2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png', 'ADMIN'),
-                                                                                                                           (2, 'Jelena', 'Jelenić', 'jelena456', '$2a$10$Mrawk7jWNJaDqDOEd4//Rupte6wFfP4F2Gl3XXXCdUYig7Aiet8S2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png', 'USER'),
-                                                                                                                           (3, 'Marko', 'Marković', 'marko789', '$2a$10$Mrawk7jWNJaDqDOEd4//Rupte6wFfP4F2Gl3XXXCdUYig7Aiet8S2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png', 'USER'),
-                                                                                                                           (4, 'Ana', 'Anić', 'anaanica', '$2a$10$Mrawk7jWNJaDqDOEd4//Rupte6wFfP4F2Gl3XXXCdUYig7Aiet8S2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png', 'USER'),
-                                                                                                                           (5, 'Test', 'test', 'test', '$2a$10$csOboecSA0tP5RrUI6qdcOZAceXYVJ2BQJVe/Mqesz5L2Ph0dK6ZG', NULL, 'USER'),
-                                                                                                                           (6, 'Uros', 'Mirkovic', 'uros', '$2a$10$Mrawk7jWNJaDqDOEd4//Rupte6wFfP4F2Gl3XXXCdUYig7Aiet8S2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png', 'ADMIN'),
-                                                                                                                           (9, 'Uros', 'Mirkovic', 'UrosAdmin', '$2a$10$Mrawk7jWNJaDqDOEd4//Rupte6wFfP4F2Gl3XXXCdUYig7Aiet8S2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png', 'ADMIN'),
-                                                                                                                           (10, 'Uros', 'Mirkovic', 'UrosUser', '$2a$10$JpLiwI40prZITGxFRDM8rec7sMpYbfDXUvcNN6M2SmkwF9OgJO0..', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png', 'USER'),
-                                                                                                                           (13, 'Test', 'Test', 'Test', '$2a$10$HKMfsUcEZDFVhdU0e.TpmObxAeBuXs1zlCWR2U0Q/XN8jYBq/5ccy', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png', 'USER'),
-                                                                                                                           (14, 'Test', 'test', 'test', 'test', NULL, 'USER'),
-                                                                                                                           (15, 'Test', 'Test', 'Test', '$2a$10$A2sfjUlh90ci7fR5nuzQ.OgOe0PqwaJMkYidPw5W7R5AKuKxpuxKa', NULL, 'USER'),
-                                                                                                                           (16, 'Test', 'Test', 'Test', '$2a$10$KRwXx/NXvy2iaBd3IupOreDlocGfM8TJkGWFR0TzeaL7sVpXzEYju', NULL, 'USER');
+                                                                                                                           (1, 'Stefan', 'Stefanović', 'stefan123', '$2a$10$Mrawk7jWNJaDqDOEd4//Rupte6wFfP4F2Gl3XXXCdUYig7Aiet8S2', 'profile.png', 'ADMIN'),
+                                                                                                                           (2, 'Jelena', 'Jelenić', 'jelena456', '$2a$10$Mrawk7jWNJaDqDOEd4//Rupte6wFfP4F2Gl3XXXCdUYig7Aiet8S2', 'profile.png', 'USER'),
+                                                                                                                           (3, 'Marko', 'Marković', 'marko789', '$2a$10$Mrawk7jWNJaDqDOEd4//Rupte6wFfP4F2Gl3XXXCdUYig7Aiet8S2', 'profile.png', 'USER'),
+                                                                                                                           (4, 'Ana', 'Anić', 'anaanica', '$2a$10$Mrawk7jWNJaDqDOEd4//Rupte6wFfP4F2Gl3XXXCdUYig7Aiet8S2', 'profile.png', 'USER'),
+                                                                                                                           (5, 'Test', 'test', 'test', '$2a$10$csOboecSA0tP5RrUI6qdcOZAceXYVJ2BQJVe/Mqesz5L2Ph0dK6ZG', 'profile.png', 'USER'),
+                                                                                                                           (6, 'Uros', 'Mirkovic', 'uros', '$2a$10$Mrawk7jWNJaDqDOEd4//Rupte6wFfP4F2Gl3XXXCdUYig7Aiet8S2', 'profile.png', 'ADMIN'),
+                                                                                                                           (9, 'Uros', 'Mirkovic', 'UrosAdmin', '$2a$10$2ukoQktyeLoOQZrgAdM8SuU.NW4bKoi5Wcr.oNYzMirDsT4F8iEPm', '20221124_155059-cropped.jpg', 'ADMIN'),
+                                                                                                                           (10, 'Uros', 'Mirkovic', 'UrosUser', '$2a$10$MBbUZB.LlkndT1o0QtwaUeca66BJA1RoiensB4Eug5yFZW/Oqn8.m', 'profile.png', 'USER');
 
 -- --------------------------------------------------------
 
@@ -123,7 +116,6 @@ INSERT INTO `recepcioner` (`ID_Recepcionera`, `Ime`, `Prezime`, `Korisnicko_Ime`
 -- Table structure for table `rezervacija`
 --
 
-DROP TABLE IF EXISTS `rezervacija`;
 CREATE TABLE IF NOT EXISTS `rezervacija` (
                                              `ID_Rezervacije` int(11) NOT NULL AUTO_INCREMENT,
                                              `ID_Gosta` int(11) DEFAULT NULL,
@@ -155,7 +147,6 @@ INSERT INTO `rezervacija` (`ID_Rezervacije`, `ID_Gosta`, `ID_Sobe`, `ID_Recepcio
 -- Table structure for table `soba`
 --
 
-DROP TABLE IF EXISTS `soba`;
 CREATE TABLE IF NOT EXISTS `soba` (
                                       `ID_Sobe` int(11) NOT NULL AUTO_INCREMENT,
                                       `Broj_Kreveta` int(11) DEFAULT NULL,
@@ -164,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `soba` (
                                       `ID_Cenovnik` int(11) NOT NULL,
                                       PRIMARY KEY (`ID_Sobe`),
                                       KEY `fk_soba_cenovnik` (`ID_Cenovnik`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `soba`
@@ -184,29 +175,30 @@ INSERT INTO `soba` (`ID_Sobe`, `Broj_Kreveta`, `Tip_Kreveta`, `Klima`, `ID_Cenov
 -- Table structure for table `soba_slika`
 --
 
-DROP TABLE IF EXISTS `soba_slika`;
 CREATE TABLE IF NOT EXISTS `soba_slika` (
                                             `id` int(11) NOT NULL AUTO_INCREMENT,
                                             `Slika_Url` varchar(255) NOT NULL,
                                             `Id_Soba` int(11) NOT NULL,
                                             PRIMARY KEY (`id`),
                                             KEY `fk_soba_slika` (`Id_Soba`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `soba_slika`
 --
 
 INSERT INTO `soba_slika` (`id`, `Slika_Url`, `Id_Soba`) VALUES
-                                                            (1, 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fdemo.goodlayers.com%2Fhotelmaster%2Fwp-content%2Fuploads%2F2015%2F03%2Fphotodune-3973289-hotel-room-m.jpg&f=1&nofb=1&ipt=6cc42ec04233973c4c802080b840ff9a2c5608562fe5fa3d0e0fdef26e9db287&ipo=images', 2),
-                                                            (2, 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fdemo.goodlayers.com%2Fhotelmaster%2Fwp-content%2Fuploads%2F2015%2F03%2Fphotodune-3973289-hotel-room-m.jpg&f=1&nofb=1&ipt=6cc42ec04233973c4c802080b840ff9a2c5608562fe5fa3d0e0fdef26e9db287&ipo=images', 3),
-                                                            (3, 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fdemo.goodlayers.com%2Fhotelmaster%2Fwp-content%2Fuploads%2F2015%2F03%2Fphotodune-3973289-hotel-room-m.jpg&f=1&nofb=1&ipt=6cc42ec04233973c4c802080b840ff9a2c5608562fe5fa3d0e0fdef26e9db287&ipo=images', 3),
-                                                            (4, 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fdemo.goodlayers.com%2Fhotelmaster%2Fwp-content%2Fuploads%2F2015%2F03%2Fphotodune-3973289-hotel-room-m.jpg&f=1&nofb=1&ipt=6cc42ec04233973c4c802080b840ff9a2c5608562fe5fa3d0e0fdef26e9db287&ipo=images', 4),
-                                                            (5, 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fdemo.goodlayers.com%2Fhotelmaster%2Fwp-content%2Fuploads%2F2015%2F03%2Fphotodune-3973289-hotel-room-m.jpg&f=1&nofb=1&ipt=6cc42ec04233973c4c802080b840ff9a2c5608562fe5fa3d0e0fdef26e9db287&ipo=images', 1),
-                                                            (6, 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fdemo.goodlayers.com%2Fhotelmaster%2Fwp-content%2Fuploads%2F2015%2F03%2Fphotodune-3973289-hotel-room-m.jpg&f=1&nofb=1&ipt=6cc42ec04233973c4c802080b840ff9a2c5608562fe5fa3d0e0fdef26e9db287&ipo=images', 5),
-                                                            (8, 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fdemo.goodlayers.com%2Fhotelmaster%2Fwp-content%2Fuploads%2F2015%2F03%2Fphotodune-3973289-hotel-room-m.jpg&f=1&nofb=1&ipt=6cc42ec04233973c4c802080b840ff9a2c5608562fe5fa3d0e0fdef26e9db287&ipo=images', 3),
-                                                            (13, '', 1),
-                                                            (14, '', 3);
+                                                            (1, 'room_1715296124.jpg', 2),
+                                                            (2, 'room_1715296124.jpg', 3),
+                                                            (3, 'room_1715296124.jpg', 3),
+                                                            (4, 'room_1715296124.jpg', 4),
+                                                            (5, 'room_1715296124.jpg', 1),
+                                                            (6, 'room_1715296124.jpg', 5),
+                                                            (8, 'room_1715296124.jpg', 3),
+                                                            (15, 'room_1715296124.jpg', 3),
+                                                            (18, 'room_1715296124.jpg', 3),
+                                                            (19, 'room_1715296124.jpg', 3),
+                                                            (20, 'room_1715296124.jpg', 3);
 
 -- --------------------------------------------------------
 
@@ -214,7 +206,6 @@ INSERT INTO `soba_slika` (`id`, `Slika_Url`, `Id_Soba`) VALUES
 -- Table structure for table `transport`
 --
 
-DROP TABLE IF EXISTS `transport`;
 CREATE TABLE IF NOT EXISTS `transport` (
                                            `ID_Transporta` int(11) NOT NULL AUTO_INCREMENT,
                                            `ID_Gosta` int(11) DEFAULT NULL,

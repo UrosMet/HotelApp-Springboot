@@ -16,6 +16,7 @@ public class SobaSlika {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+
     @Column(name = "Slika_Url", nullable = false)
     private String slikaUrl;
 

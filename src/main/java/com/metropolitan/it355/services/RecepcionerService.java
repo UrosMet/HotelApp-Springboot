@@ -1,6 +1,7 @@
 package com.metropolitan.it355.services;
 
 import com.metropolitan.it355.entity.Recepcioner;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,5 +41,11 @@ public interface RecepcionerService {
      */
     void delete(int id);
 
+    /**
+     * Metoda dodaje ili updejtuje sliku
+     * @param file
+     * @return path
+     */
+    String storeImage(MultipartFile file);
 
 }

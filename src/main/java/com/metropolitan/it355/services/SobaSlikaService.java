@@ -46,5 +46,12 @@ public interface SobaSlikaService {
      * @return List<SobaSlika>
      */
     List<SobaSlika> getAllByIdSoba(Integer idSoba);
+
+    /**
+     * Metoda cuva vise slika za jedan smestaj
+     * @param sobaSlikaId
+     * @param imageUrl
+     */
+    void savePhotos(int sobaSlikaId, String imageUrl);
     
 }

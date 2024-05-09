@@ -45,7 +45,7 @@ public class Recepcioner implements UserDetails{
     private String role = "USER";
 
     @Column(name = "Profilna_Slika")
-    private String profilnaSlika;
+    private String profilnaSlika = "profile.png";
 
     @JsonIgnore
     private static final Map<String, List<String>> rolePermissions = Map.of(
