@@ -80,9 +80,15 @@ public class SobaSlikaController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable int id) {
         Optional<?> sobaSlika = sobaSlikaService.getById(id);
-
         if (sobaSlika.isPresent()) {
+            SobaSlika ss = (SobaSlika) sobaSlika.get();
+            Path target = Paths.get(UPLOAD_DIR + ss.getSlikaUrl());
             sobaSlikaService.delete(id);
+            try {
+                Files.deleteIfExists(target);
+            } catch (IOException e) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", e.getMessage()));
+            }
             return ResponseEntity.ok(sobaSlika);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Not found"));

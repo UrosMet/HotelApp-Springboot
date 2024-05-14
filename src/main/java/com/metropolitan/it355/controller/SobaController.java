@@ -1,12 +1,18 @@
 package com.metropolitan.it355.controller;
 
 import com.metropolitan.it355.entity.Soba;
+import com.metropolitan.it355.entity.SobaSlika;
 import com.metropolitan.it355.services.SobaService;
+import com.metropolitan.it355.services.SobaSlikaService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -16,7 +22,10 @@ import java.util.Optional;
 @RequestMapping("/soba")
 public class SobaController {
 
+    private static final String UPLOAD_DIR = "./src/main/resources/images/";
+
     final SobaService sobaService;
+    final SobaSlikaService sobaSlikaService;
 
     @GetMapping
     public ResponseEntity<List<Soba>> findAll() {
@@ -43,9 +52,20 @@ public class SobaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable int id) {
-        Optional<?> soba = sobaService.getById(id);
+        Optional<?> opt = sobaService.getById(id);
 
-        if (soba.isPresent()) {
+        if (opt.isPresent()) {
+            Soba soba = (Soba) opt.get();
+            List<SobaSlika> list = sobaSlikaService.getAllByIdSoba(soba.getId());
+            for (SobaSlika sobaSlika : list) {
+                Path target = Paths.get(UPLOAD_DIR + sobaSlika.getSlikaUrl());
+                try {
+                    Files.deleteIfExists(target);
+                    sobaSlikaService.delete(sobaSlika.getId());
+                } catch (IOException e) {
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", e.getMessage()));
+                }
+            }
             sobaService.delete(id);
             return ResponseEntity.ok(soba);
         }

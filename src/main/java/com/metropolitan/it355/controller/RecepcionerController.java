@@ -9,6 +9,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -17,6 +21,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/recepcioner")
 public class RecepcionerController {
+
+    private static final String UPLOAD_DIR = "./src/main/resources/images/";
 
     final RecepcionerService recepcionerService;
     final PasswordEncoder passwordEncoder;
@@ -34,24 +40,6 @@ public class RecepcionerController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Not found"));
     }
 
-//    @PostMapping
-//    public ResponseEntity<Recepcioner> save(@RequestParam("ime") String ime,
-//                                            @RequestParam("prezime") String prezime,
-//                                            @RequestParam("korisnicko_ime") String korisnicko_ime,
-//                                            @RequestParam("lozinka") String lozinka,
-//                                            @RequestParam("profilna_slika") MultipartFile profilna_slika) {
-//        Recepcioner recepcioner = new Recepcioner();
-//        String url = null;
-//        if (profilna_slika != null && !profilna_slika.isEmpty()) {
-//            url = recepcionerService.storeImage(profilna_slika);
-//        }
-//        recepcioner.setProfilnaSlika(url);
-//        recepcioner.setIme(ime);
-//        recepcioner.setPrezime(prezime);
-//        recepcioner.setKorisnickoIme(korisnicko_ime);
-//        recepcioner.setLozinka(passwordEncoder.encode(lozinka));
-//        return ResponseEntity.ok(recepcionerService.add(recepcioner));
-//    }
 
     @PostMapping
     public ResponseEntity<Recepcioner> save(@RequestBody Recepcioner recepcioner) {
@@ -87,8 +75,14 @@ public class RecepcionerController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable int id) {
         Optional<?> recepcioner = recepcionerService.getById(id);
-
         if (recepcioner.isPresent()) {
+            Recepcioner rec = (Recepcioner) recepcioner.get();
+            Path target = Paths.get(UPLOAD_DIR + rec.getProfilnaSlika());
+            try {
+                Files.deleteIfExists(target);
+            } catch (IOException e) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", e.getMessage()));
+            }
             recepcionerService.delete(id);
             return ResponseEntity.ok(recepcioner);
         }
