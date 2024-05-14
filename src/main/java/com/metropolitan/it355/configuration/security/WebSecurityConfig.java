@@ -45,6 +45,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests( authConfig -> authConfig
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.GET , "/images/**").permitAll()
                         .requestMatchers("/error").permitAll()
                         //Soba
                         .requestMatchers(HttpMethod.POST , "/soba/**").hasAuthority("FULL_ACCESS")
@@ -82,6 +83,8 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.POST , "/upload/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
                         //Logout
                         .requestMatchers(HttpMethod.POST , "/auth/logout").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                        //Images
+
                         //Admin
                         .requestMatchers("/admin/**").hasAuthority("FULL_ACCESS")
                         .requestMatchers("/actuator/**").hasAuthority("FULL_ACCESS")
