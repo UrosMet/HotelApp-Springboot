@@ -3,6 +3,7 @@ package com.metropolitan.it355.services.impl;
 import com.metropolitan.it355.entity.Recepcioner;
 import com.metropolitan.it355.repository.RecepcionerRepository;
 import com.metropolitan.it355.services.RecepcionerService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -68,8 +69,27 @@ public class RecepcionerServiceImpl implements RecepcionerService, UserDetailsSe
      */
     @Override
     public Recepcioner update(Recepcioner recepcioner) {
-        recepcioner.setLozinka(passwordEncoder.encode(recepcioner.getLozinka()));
-        return recepcionerRepository.save(recepcioner);
+//        recepcioner.setLozinka(passwordEncoder.encode(recepcioner.getLozinka()));
+//        return recepcionerRepository.save(recepcioner);
+
+        Optional<Recepcioner> existingReceptionist = recepcionerRepository.findById(recepcioner.getId());
+        if (existingReceptionist.isPresent()) {
+            Recepcioner updatedReceptionist = existingReceptionist.get();
+            updatedReceptionist.setIme(recepcioner.getIme());
+            updatedReceptionist.setPrezime(recepcioner.getPrezime());
+            updatedReceptionist.setKorisnickoIme(recepcioner.getKorisnickoIme());
+            updatedReceptionist.setLozinka(passwordEncoder.encode(recepcioner.getLozinka()));
+            updatedReceptionist.setRole(recepcioner.getRole());
+            if (recepcioner.getProfilnaSlika() != null) {
+                updatedReceptionist.setProfilnaSlika(recepcioner.getProfilnaSlika());
+            }
+
+            System.err.println("Updated Receptionist: " + updatedReceptionist);
+
+            return recepcionerRepository.save(updatedReceptionist);
+        } else {
+            throw new EntityNotFoundException("Receptionist not found with ID: " + recepcioner.getId());
+        }
     }
 
     /**

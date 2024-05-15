@@ -33,11 +33,17 @@ public class TransportController {
 
     @PostMapping
     public ResponseEntity<Transport> save(@RequestBody Transport transport) {
+        if (transport.getIdGosta() == null || transport.getIdGosta().getId() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
         return ResponseEntity.ok(transportService.add(transport));
     }
 
     @PutMapping
     public ResponseEntity<Transport> update(@RequestBody Transport transport) {
+        if (transport.getIdGosta() == null || transport.getIdGosta().getId() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
         return ResponseEntity.ok(transportService.update(transport));
     }
 

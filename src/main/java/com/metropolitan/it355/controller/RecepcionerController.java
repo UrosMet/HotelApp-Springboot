@@ -47,17 +47,43 @@ public class RecepcionerController {
         return ResponseEntity.ok(recepcionerService.add(recepcioner));
     }
 
+//    @PutMapping
+//    public ResponseEntity<?> update(@RequestParam("ime") String ime,
+//                                    @RequestParam("id") Integer id,
+//                                    @RequestParam("prezime") String prezime,
+//                                    @RequestParam("korisnicko_ime") String korisnicko_ime,
+//                                    @RequestParam("lozinka") String lozinka,
+//                                    @RequestParam("profilna_slika") MultipartFile profilna_slika) {
+//        Optional<?> optional = recepcionerService.getById(id);
+//        if (optional.isPresent()) {
+//            Recepcioner recepcioner = (Recepcioner) optional.get();
+//            String url = null;
+//            if (profilna_slika != null && !profilna_slika.isEmpty()) {
+//                url = recepcionerService.storeImage(profilna_slika);
+//            }
+//            recepcioner.setProfilnaSlika(url);
+//            recepcioner.setIme(ime);
+//            recepcioner.setPrezime(prezime);
+//            recepcioner.setKorisnickoIme(korisnicko_ime);
+//            recepcioner.setLozinka(passwordEncoder.encode(lozinka));
+//            return ResponseEntity.ok(recepcionerService.add(recepcioner));
+//        }
+//        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Not found"));
+//
+//    }
+
     @PutMapping
     public ResponseEntity<?> update(@RequestParam("ime") String ime,
                                     @RequestParam("id") Integer id,
                                     @RequestParam("prezime") String prezime,
                                     @RequestParam("korisnicko_ime") String korisnicko_ime,
                                     @RequestParam("lozinka") String lozinka,
-                                    @RequestParam("profilna_slika") MultipartFile profilna_slika) {
+                                    @RequestParam(value = "profilna_slika", required = false) MultipartFile profilna_slika,
+                                    @RequestParam(value = "role", required = false) String role) {
         Optional<?> optional = recepcionerService.getById(id);
         if (optional.isPresent()) {
             Recepcioner recepcioner = (Recepcioner) optional.get();
-            String url = null;
+            String url = recepcioner.getProfilnaSlika();
             if (profilna_slika != null && !profilna_slika.isEmpty()) {
                 url = recepcionerService.storeImage(profilna_slika);
             }
@@ -66,10 +92,12 @@ public class RecepcionerController {
             recepcioner.setPrezime(prezime);
             recepcioner.setKorisnickoIme(korisnicko_ime);
             recepcioner.setLozinka(passwordEncoder.encode(lozinka));
+            if (role != null) {
+                recepcioner.setRole(role);
+            }
             return ResponseEntity.ok(recepcionerService.add(recepcioner));
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Not found"));
-
     }
 
     @DeleteMapping("/{id}")

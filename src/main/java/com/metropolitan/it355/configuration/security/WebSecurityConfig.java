@@ -53,7 +53,10 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.DELETE , "/soba/**").hasAuthority("FULL_ACCESS")
                         .requestMatchers(HttpMethod.GET , "/soba/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
                         //Gost
-                        .requestMatchers("/gost/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                        .requestMatchers(HttpMethod.GET,"/gost/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                        .requestMatchers(HttpMethod.PUT,"/gost/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                        .requestMatchers(HttpMethod.POST,"/gost/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
+                        .requestMatchers(HttpMethod.DELETE,"/gost/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
                         //Rezervacija
                         .requestMatchers(HttpMethod.GET , "/rezervacija/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
                         .requestMatchers(HttpMethod.POST , "/rezervacija/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
@@ -76,7 +79,7 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.DELETE , "/sobaslike/**").hasAuthority("FULL_ACCESS")
                         //Recepcioner
                         .requestMatchers(HttpMethod.PUT , "/recepcioner/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
-                        .requestMatchers(HttpMethod.GET , "/recepcioner/**").hasAuthority("FULL_ACCESS")
+                        .requestMatchers(HttpMethod.GET , "/recepcioner/**").hasAnyAuthority("READ_ONLY","FULL_ACCESS")
                         .requestMatchers(HttpMethod.POST , "/recepcioner/**").hasAuthority("FULL_ACCESS")
                         .requestMatchers(HttpMethod.DELETE , "/recepcioner/**").hasAuthority("FULL_ACCESS")
                         //Upload
