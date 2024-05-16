@@ -9,9 +9,15 @@ import com.metropolitan.it355.services.SobaSlikaService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-import java.util.Optional;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.time.Instant;
+import java.util.*;
 
 @AllArgsConstructor
 @Service
@@ -19,6 +25,8 @@ public class SobaSlikaServiceImpl implements SobaSlikaService {
 
     final SobaSlikaRepository sobaSlikaRepository;
     final SobaService sobaService;
+
+    private static final String UPLOAD_DIR = "./src/main/resources/images/";
 
     /**
      * Metoda vraca sve slike sobe
@@ -100,6 +108,58 @@ public class SobaSlikaServiceImpl implements SobaSlikaService {
         photo.setIdSoba(soba);
         photo.setSlikaUrl(imageUrl);
         sobaSlikaRepository.save(photo);
+    }
+
+    /**
+     * Metoda uploaduje slike
+     *
+     * @param images
+     * @param sobaId
+     * @return Map<String, String>
+     */
+    @Override
+    public Map<String, String> uploadImages(MultipartFile[] images, int sobaId) {
+        if (images.length == 0) {
+            throw new IllegalArgumentException("Nema fajlova");
+        }
+
+        Map<String, String> response = new HashMap<>();
+        for (MultipartFile file : images) {
+            String originalFilename = Objects.requireNonNull(file.getOriginalFilename());
+            String filename = originalFilename.replace(" ", "_");
+            String extension = filename.lastIndexOf(".") > 0 ? filename.substring(filename.lastIndexOf(".")) : "";
+            String baseFilename = filename.substring(0, filename.lastIndexOf("."));
+            String uniqueFilename = baseFilename + "_" + Instant.now().getEpochSecond() + extension;
+            Path targetLocation = Paths.get(UPLOAD_DIR + uniqueFilename);
+            try {
+                Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            savePhotos(sobaId, uniqueFilename);
+            response.put(originalFilename, uniqueFilename);
+        }
+        return response;
+    }
+
+    /**
+     * Metoda brise sliku iz foldera po id
+     *
+     * @param id
+     */
+    @Override
+    public void deleteSobaSlika(int id) {
+        Optional<?> sobaSlika = getById(id);
+        if (sobaSlika.isPresent()) {
+            SobaSlika ss = (SobaSlika) sobaSlika.get();
+            Path target = Paths.get(UPLOAD_DIR + ss.getSlikaUrl());
+            delete(id);
+            try {
+                Files.deleteIfExists(target);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 

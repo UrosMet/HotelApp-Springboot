@@ -48,4 +48,19 @@ public interface RecepcionerService {
      */
     String storeImage(MultipartFile file);
 
+    /**
+     * Metoda updatejtuje recepcionera i dodaje sliku u folder
+     * @param id
+     * @param ime
+     * @param prezime
+     * @param korisnicko_ime
+     * @param lozinka
+     * @param profilna_slika
+     * @param role
+     * @return Recepcioner
+     */
+    Recepcioner updateRecepcioner(int id, String ime, String prezime, String korisnicko_ime, String lozinka, MultipartFile profilna_slika, String role);
+
+    void deleteRecepcionerAndImage(int id);
+
 }

@@ -38,4 +38,10 @@ public interface SobaService {
      * @param id
      */
     void delete(int id);
+
+    /**
+     * Metoda brise sobu i sve slike iz foldera za datu sobu
+     * @param id
+     */
+    void deleteSobaAndImages(int id);
 }

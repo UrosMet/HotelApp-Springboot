@@ -1,8 +1,10 @@
 package com.metropolitan.it355.services;
 
 import com.metropolitan.it355.entity.SobaSlika;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface SobaSlikaService {
@@ -53,5 +55,18 @@ public interface SobaSlikaService {
      * @param imageUrl
      */
     void savePhotos(int sobaSlikaId, String imageUrl);
-    
+
+    /**
+     * Metoda uploaduje slike
+     * @param images
+     * @param sobaId
+     * @return Map<String,String>
+     */
+    Map<String, String> uploadImages(MultipartFile[] images, int sobaId);
+
+    /**
+     * Metoda brise sliku iz foldera po id
+     * @param id
+     */
+    void deleteSobaSlika(int id);
 }

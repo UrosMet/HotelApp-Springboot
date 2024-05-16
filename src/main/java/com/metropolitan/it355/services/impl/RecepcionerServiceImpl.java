@@ -28,7 +28,7 @@ public class RecepcionerServiceImpl implements RecepcionerService, UserDetailsSe
     final RecepcionerRepository recepcionerRepository;
     private final PasswordEncoder passwordEncoder;
     private final Path rootLocation = Paths.get("./src/main/resources/images");
-
+    private static final String UPLOAD_DIR = "./src/main/resources/images/";
     /**
      * Metoda vraca sve Recepcionere
      *
@@ -123,6 +123,43 @@ public class RecepcionerServiceImpl implements RecepcionerService, UserDetailsSe
             }
         } catch (IOException e) {
             throw new RuntimeException("Failed to store file", e);
+        }
+    }
+
+    @Override
+    public Recepcioner updateRecepcioner(int id, String ime, String prezime, String korisnicko_ime, String lozinka, MultipartFile profilna_slika, String role) {
+        Optional<?> optional = getById(id);
+        if (optional.isPresent()) {
+            Recepcioner recepcioner = (Recepcioner) optional.get();
+            String url = recepcioner.getProfilnaSlika();
+            if (profilna_slika != null && !profilna_slika.isEmpty()) {
+                url = storeImage(profilna_slika);
+            }
+            recepcioner.setProfilnaSlika(url);
+            recepcioner.setIme(ime);
+            recepcioner.setPrezime(prezime);
+            recepcioner.setKorisnickoIme(korisnicko_ime);
+            recepcioner.setLozinka(passwordEncoder.encode(lozinka));
+            if (role != null) {
+                recepcioner.setRole(role);
+            }
+            return add(recepcioner);
+        }
+        return null;
+    }
+
+    @Override
+    public void deleteRecepcionerAndImage(int id) {
+        Optional<?> optional = getById(id);
+        if (optional.isPresent()) {
+            Recepcioner rec = (Recepcioner) optional.get();
+            Path target = Paths.get(UPLOAD_DIR + rec.getProfilnaSlika());
+            try {
+                Files.deleteIfExists(target);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            delete(id);
         }
     }
 
