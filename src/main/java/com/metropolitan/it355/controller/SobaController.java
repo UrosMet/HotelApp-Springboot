@@ -16,8 +16,6 @@ import java.util.Map;
 @RequestMapping("/soba")
 public class SobaController {
 
-    private static final String UPLOAD_DIR = "./src/main/resources/images/";
-
     final SobaService sobaService;
     final SobaSlikaService sobaSlikaService;
 
