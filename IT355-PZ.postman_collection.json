@@ -1,0 +1,1079 @@
+{
+	"info": {
+		"_postman_id": "2ff68268-4981-411c-923b-d4e755f342c6",
+		"name": "IT355-PZ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33909474"
+	},
+	"item": [
+		{
+			"name": "Gost",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/gost",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gost"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/gost/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gost",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ime\": \"Uros\",\r\n    \"prezime\": \"Mirkovic\",\r\n    \"datumDolaska\": \"2024-04-22\",\r\n    \"datumOdlaska\": \"2024-04-25\",\r\n    \"tipGosta\": \"Regular\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/gost",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gost"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 7,\r\n    \"ime\": \"Uros\",\r\n    \"prezime\": \"Mirkovic\",\r\n    \"datumDolaska\": \"2024-04-22\",\r\n    \"datumOdlaska\": \"2024-04-25\",\r\n    \"tipGosta\": \"VIP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/gost",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gost"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/gost/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gost",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Cenovnik",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/cenovnik/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cenovnik",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/cenovnik/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cenovnik",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cenaPoNoci\": 200\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/cenovnik",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cenovnik"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 6,\r\n    \"cenaPoNoci\": 250\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/cenovnik",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cenovnik"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/cenovnik/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cenovnik",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recepcioner",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/recepcioner",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recepcioner"
+							]
+						},
+						"description": "\nThis HTTP GET request retrieves information from the \"recepcioner\" endpoint located at http://localhost:8080/recepcioner. The response returns a JSON array containing objects with keys \"id\", \"ime\", \"prezime\", \"korisnickoIme\", \"lozinka\", \"profilnaSlika\", and \"role\". To treat the profile picture as an image, the \"profilnaSlika\" value should be handled as an image data type.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/recepcioner/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"recepcioner",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ime\": \"Test\",\r\n    \"prezime\": \"test\",\r\n    \"korisnickoIme\": \"test\",\r\n    \"lozinka\": \"test\",\r\n    \"role\": \"USER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/recepcioner",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recepcioner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 7,\r\n    \"ime\": \"Test\",\r\n    \"prezime\": \"test\",\r\n    \"korisnickoIme\": \"test\",\r\n    \"lozinka\": \"test\",\r\n    \"role\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/recepcioner",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recepcioner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/recepcioner/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recepcioner",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Soba",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/soba",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"soba"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/soba/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"soba",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"brojKreveta\": 2,\r\n    \"tipKreveta\": \"Test\",\r\n    \"cenovnik\": {\r\n        \"id\": 4\r\n    },\r\n    \"klima\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/soba",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"soba"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 6,\r\n    \"brojKreveta\": 2,\r\n    \"tipKreveta\": \"Test\",\r\n    \"cenovnik\": {\r\n        \"id\": 4,\r\n        \"cenaPoNoci\": 90.00\r\n    },\r\n    \"klima\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/soba",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"soba"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/soba/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"soba",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rezervacija",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/rezervacija",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rezervacija"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/rezervacija/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rezervacija",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idGosta\": {\r\n        \"id\": 3\r\n    },\r\n    \"idSobe\": {\r\n        \"id\": 4\r\n    },\r\n    \"idRecepcioner\": {\r\n        \"id\": 5\r\n    },\r\n    \"datumRezervacije\": \"2024-04-24\",\r\n    \"duzinaBoravka\" : 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/rezervacija",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rezervacija"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 6,\r\n    \"idGosta\": {\r\n        \"id\": 3,\r\n        \"ime\": \"Jovan\",\r\n        \"prezime\": \"Jovanović\",\r\n        \"datumDolaska\": \"2024-04-18\",\r\n        \"datumOdlaska\": \"2024-04-25\",\r\n        \"tipGosta\": \"Regular\"\r\n    },\r\n    \"idSobe\": {\r\n        \"id\": 1\r\n    },\r\n    \"idRecepcioner\": {\r\n        \"id\": 5,\r\n        \"ime\": \"Nikola\",\r\n        \"prezime\": \"Nikolić\",\r\n        \"korisnickoIme\": \"nikolanik\",\r\n        \"lozinka\": \"secure\",\r\n        \"role\": \"USER\"\r\n    },\r\n    \"datumRezervacije\": \"2024-04-24\",\r\n    \"duzinaBoravka\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/rezervacija",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rezervacija"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/rezervacija/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rezervacija",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByGost",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/rezervacija/gost/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rezervacija",
+								"gost",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBySoba",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/rezervacija/soba/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rezervacija",
+								"soba",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByRecepcioner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/rezervacija/recepcioner/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rezervacija",
+								"recepcioner",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transport",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/transport",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transport"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/transport/9",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transport",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idGosta\": {\r\n        \"id\": 4\r\n    },\r\n    \"vrstaTransporta\": \"Taxi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/transport",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transport"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 9,\r\n    \"idGosta\": {\r\n        \"id\": 5\r\n    },\r\n    \"vrstaTransporta\": \"Rent-a-car\",\r\n    \"vremeNarucivanja\": \"2024-04-25T10:16:58Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/transport",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transport"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/transport/9",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transport",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "totalEarnings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/admin/earnings",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"earnings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "totalEarningsByDate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/admin/earnings/date?startDate=2024-05-01&endDate=2024-12-31",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"earnings",
+								"date"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-05-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-12-31"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LogOut",
+			"item": [
+				{
+					"name": "logOut",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SobaSlika",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/sobaslike",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sobaslike"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 7,\r\n    \"slikaUrl\": \"https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fdemo.goodlayers.com%2Fhotelmaster%2Fwp-content%2Fuploads%2F2015%2F03%2Fphotodune-3973289-hotel-room-m.jpg&f=1&nofb=1&ipt=6cc42ec04233973c4c802080b840ff9a2c5608562fe5fa3d0e0fdef26e9db287&ipo=images\",\r\n    \"idSoba\": {\r\n        \"id\": 2,\r\n        \"brojKreveta\": null,\r\n        \"tipKreveta\": null,\r\n        \"cenovnik\": null,\r\n        \"klima\": null\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/sobaslike",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sobaslike"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/sobaslike/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sobaslike",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByIdSoba",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/sobaslike/soba/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sobaslike",
+								"soba",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "images",
+									"type": "file",
+									"src": [
+										"/C:/Users/Uros/Pictures/New folder/R11.jpg",
+										"/C:/Users/Uros/Pictures/New folder/R13.jpg"
+									]
+								},
+								{
+									"key": "sobaId",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sobaslike/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sobaslike",
+								"upload"
+							],
+							"query": [
+								{
+									"key": "sobaId",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "images",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Upload",
+			"item": [
+				{
+					"name": "upload",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJJbWUiOiJVcm9zIiwiUm9sZSI6IkFETUlOIiwiSURfUmVjZXBjaW9uZXJhIjo5LCJQcmV6aW1lIjoiTWlya292aWMiLCJLb3Jpc25pY2tvX0ltZSI6IlVyb3NBZG1pbiIsImlhdCI6MTcxNTg4NTk4OSwiZXhwIjoxNzE1ODg3Nzg5fQ.z4IBYaWJBBOcmoiNOaiwPZx7wuOY2pkRRXoBMxj49Zg",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
